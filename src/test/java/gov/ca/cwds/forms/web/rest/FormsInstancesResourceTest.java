@@ -56,8 +56,8 @@ public class FormsInstancesResourceTest extends BaseApiIntegrationTest {
   @Test
   public void getAllFormInstancesTest() throws Exception {
 
-    FormInstanceDTO schema1 = formsHelper.createForm("test_form1", "V1");
-    FormInstanceDTO schema2 = formsHelper.createForm("test_form2", "V2");
+    FormInstanceDTO schema1 = formsHelper.createForm("test_form1", "V2");
+    FormInstanceDTO schema2 = formsHelper.createForm("test_form2", "V3");
 
     WebTarget target = clientTestRule
         .target(API.FORMS_INSTANCES_PATH);
@@ -71,7 +71,7 @@ public class FormsInstancesResourceTest extends BaseApiIntegrationTest {
   @Test
   public void updateFormInstanceTest() throws Exception {
     String formName = "test_form";
-    String schemaVersion = "V2";
+    String schemaVersion = "V4";
     FormInstanceDTO schema = formsHelper.createForm(formName, schemaVersion);
     schema.setParentFormId(1L);
     WebTarget target = clientTestRule
@@ -92,7 +92,7 @@ public class FormsInstancesResourceTest extends BaseApiIntegrationTest {
   @Test
   public void deleteSchemaTest() throws Exception {
     String formName = "test_form";
-    String schemaVersion = "V3";
+    String schemaVersion = "V5";
     FormInstanceDTO schema = formsHelper.createForm(formName, schemaVersion);
     WebTarget target = clientTestRule
         .target(API.FORMS_INSTANCES_PATH + "/" + formName + "/" + schema.getFormId());
@@ -110,7 +110,7 @@ public class FormsInstancesResourceTest extends BaseApiIntegrationTest {
   @Test
   public void invalidFormTest() {
     String formName = "test_form";
-    String schemaVersion = "V5";
+    String schemaVersion = "V6";
 
     String formContent = fixture("fixtures/testForm-no-required.json");
 

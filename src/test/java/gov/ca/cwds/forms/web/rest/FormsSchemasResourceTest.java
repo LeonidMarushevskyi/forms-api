@@ -39,7 +39,7 @@ public class FormsSchemasResourceTest extends BaseApiIntegrationTest {
 
   @Test
   public void getSchemaTest() throws Exception {
-    String formName = "test_form";
+    String formName = "test_form1";
     String schemaVersion = "V1";
     FormSchemaDTO schema = schemaHelper.createFormsSchema(formName, schemaVersion);
     WebTarget target = clientTestRule
@@ -53,8 +53,8 @@ public class FormsSchemasResourceTest extends BaseApiIntegrationTest {
   @Test
   public void getAllSchemasTest() throws Exception {
 
-    FormSchemaDTO schema1 = schemaHelper.createFormsSchema("test_form1", "V1");
-    FormSchemaDTO schema2 = schemaHelper.createFormsSchema("test_form2", "V2");
+    FormSchemaDTO schema1 = schemaHelper.createFormsSchema("test_form2", "V2");
+    FormSchemaDTO schema2 = schemaHelper.createFormsSchema("test_form3", "V2");
 
     WebTarget target = clientTestRule
         .target(API.FORMS_SCHEMAS_PATH);
@@ -67,8 +67,8 @@ public class FormsSchemasResourceTest extends BaseApiIntegrationTest {
 
   @Test
   public void updateSchemaTest() throws Exception {
-    String formName = "test_form";
-    String schemaVersion = "V2";
+    String formName = "test_form4";
+    String schemaVersion = "V4";
     FormSchemaDTO schema = schemaHelper.createFormsSchema(formName, schemaVersion);
     schema.setDescription("new Description");
     WebTarget target = clientTestRule
@@ -88,8 +88,8 @@ public class FormsSchemasResourceTest extends BaseApiIntegrationTest {
 
   @Test
   public void deleteSchemaTest() throws Exception {
-    String formName = "test_form";
-    String schemaVersion = "V3";
+    String formName = "test_form5";
+    String schemaVersion = "V5";
     FormSchemaDTO schema = schemaHelper.createFormsSchema(formName, schemaVersion);
     WebTarget target = clientTestRule
         .target(API.FORMS_SCHEMAS_PATH + "/" + schema.getFormSchemaId());

@@ -1,0 +1,84 @@
+applicationName: CWDS FORMS API
+version: ${APP_VERSION:-local}
+
+server:
+  applicationConnectors:
+  - type: http
+    port: 8080
+  adminConnectors:
+  - type: http
+    port: 9081
+  requestLog:
+    appenders:
+      - type: console
+
+shiro:
+  iniConfigs: ["file:${SHIRO_CONFIG_PATH:-config/shiro_nosec.ini}"]
+
+swagger:
+  templateName: swagger.mustache
+  assetsPath: /static
+  resourcePackage: gov.ca.cwds.forms.web.rest
+  title: CWDS FORMS API
+  description: RESTful FORMS API.
+  logo: images/CWDS-API-Logo-Horizontal.png
+  loginUrl: ${LOGIN_URL:-http://localhost:8080/authn/login/}
+  logoutUrl: ${LOGOUT_URL:-http://localhost:8080/perry/authn/logout}
+  showSwagger: ${SHOW_SWAGGER:-true}
+  jsonUrl: ${SWAGGER_JSON_URL:-http://localhost:8080/swagger.json}
+  callbackUrl: ${SWAGGER_CALLBACK_URL:-http://localhost:8080/swagger}
+
+upgardeDbOnStart: ${UPGRADE_DB_ON_START:-true}
+
+formsDataSourceFactory:
+  driverClass: org.postgresql.Driver
+  user: ${DB_FORMS_USER:-postgres_data}
+  password: ${DB_FORMS_PASSWORD:-postgres_data}
+  url: ${DB_FORMS_JDBC_URL:-jdbc:postgresql://192.168.99.100:5432/postgres_data}
+  validationQuery: "select count(*) from ${DB_FORMS_DEFAULT_SCHEMA:-forms}.form_schema"
+  logValidationErrors: true
+  initialSize: ${DB_FORMS_CP_INITIAL_SIZE:-2}
+  minSize: ${DB_FORMS_CP_MIN_SIZE:-2}
+  maxSize: ${DB_FORMS_CP_MAX_SIZE:-8}
+  minIdleTime: 1 minute
+  properties:
+      hibernate.dialect: gov.ca.cwds.forms.persistence.hibernate.dialect.JsonbSupportPostgreSQL9Dialect
+      hibernate.id.new_generator_mappings: false
+      hibernate.show_sql: false
+      hibernate.default_schema: ${DB_FORMS_DEFAULT_SCHEMA:-forms}
+      hibernate.cache.use_second_level_cache: true
+      hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
+      hibernate.cache.use_query_cache: true
+      hibernate.connection.autocommit: false
+
+webSecurity:
+  httpResponseSecurityHeaders:
+    # Prevent MIMI sniffing
+    X-Content-Type-Options: nosniff
+
+    # Prevent click-jacking
+    X-Frame-Options: deny
+
+    # Prevent cross site scripting
+    X-XSS-Protection: 1; mode=block
+
+    # Prevent everything other than same origin
+    Content-Security-Policy: default-src 'self' 'unsafe-inline';
+
+logging:
+  level: ${LOGLEVEL:-INFO}
+  loggers:
+    "org.hibernate.SQL":
+      level: INFO
+    "org.hibernate.type.descriptor.sql":
+      level: INFO
+    "AUDIT":
+      level: ALL
+    "gov.ca.cwds":
+      level: DEBUG
+  appenders:
+    - type: console
+      threshold: INFO
+      timeZone: UTC
+      target: stdout
+      logFormat: '[%X{remoteAddress}] [%date{ISO8601}] [%level] [%thread] [%X{uniqueId}] [%logger:] [%message]%n'

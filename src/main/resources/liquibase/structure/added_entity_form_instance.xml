@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+  <!--
+      Added the entity Rfa_1a.
+  -->
+  <changeSet author="TPT2_team" id="form_instance-1">
+    <createTable tableName="form_instance">
+      <column autoIncrement="${autoIncrement}" name="id" type="${type.long}">
+        <constraints nullable="false" primaryKey="true"/>
+      </column>
+      <column name="form_name" type="${type.string}(32)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="schema_version" type="${type.string}(10)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="parent_form_id" type="${type.long}">
+        <constraints nullable="true"/>
+      </column>
+      <column name="parent_form_name" type="${type.string}(32)">
+        <constraints nullable="true"/>
+      </column>
+      <column defaultValue="draft" name="status" type="${type.string}(50)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="content" type="${type.jsonb}">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+</databaseChangeLog>

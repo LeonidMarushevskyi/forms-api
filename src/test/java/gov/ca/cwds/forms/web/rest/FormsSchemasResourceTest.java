@@ -54,7 +54,7 @@ public class FormsSchemasResourceTest extends BaseApiIntegrationTest {
   public void getAllSchemasTest() throws Exception {
 
     FormSchemaDTO schema1 = schemaHelper.createFormsSchema("test_form2", "V2");
-    FormSchemaDTO schema2 = schemaHelper.createFormsSchema("test_form3", "V2");
+    FormSchemaDTO schema2 = schemaHelper.createFormsSchema("test_form2", "V5");
 
     WebTarget target = clientTestRule
         .target(API.FORMS_SCHEMAS_PATH);

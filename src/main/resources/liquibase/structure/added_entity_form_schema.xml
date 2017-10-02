@@ -26,10 +26,9 @@
 
   <changeSet author="TPT2_team" id="form_schema_unique_index-1">
     <addUniqueConstraint
-      columnNames="schema_version, form_name"
       constraintName="const_unique_name_version"
-      deferrable="false"
       tableName="form_schema"
+      columnNames="form_name, schema_version"
     />
   </changeSet>
 

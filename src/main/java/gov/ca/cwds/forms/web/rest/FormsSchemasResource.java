@@ -85,7 +85,7 @@ public class FormsSchemasResource {
   )
   @ApiOperation(value = "Returns All available Form Schemas", response = FormSchemaCollectionDTO.class)
   public Response getAllFormsSchemas() {
-    return collectionResourceDelegate.get(true);
+    return collectionResourceDelegate.get(new FormSchemaParameterObject());
   }
 
   @UnitOfWork(FORMS_UNIT_OF_WORK)

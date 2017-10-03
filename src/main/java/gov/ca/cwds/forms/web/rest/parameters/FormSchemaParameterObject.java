@@ -17,6 +17,9 @@ public class FormSchemaParameterObject implements Serializable {
     this.id = id;
   }
 
+  public FormSchemaParameterObject() {
+  }
+
   public FormSchemaParameterObject(Long id) {
     this.id = id;
   }

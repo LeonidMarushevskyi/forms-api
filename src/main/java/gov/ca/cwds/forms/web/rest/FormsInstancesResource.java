@@ -77,7 +77,7 @@ public class FormsInstancesResource {
 
   @UnitOfWork(FORMS_UNIT_OF_WORK)
   @GET
-  @PathParam("/{" + FORM_NAME_PARAMETER + "}")
+  @Path("/{" + FORM_NAME_PARAMETER + "}")
   @Timed
   @ApiResponses(
       value = {

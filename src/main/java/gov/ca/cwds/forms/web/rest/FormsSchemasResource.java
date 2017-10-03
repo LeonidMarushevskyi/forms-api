@@ -36,7 +36,7 @@ import javax.ws.rs.core.Response;
 /**
  * @author CWDS TPT-2 Team
  */
-@Api(tags = {FORMS_INSTANCE_TAG, FORM_SCHEMA_TAG})
+@Api(tags = {FORM_SCHEMA_TAG})
 @Path(FORMS_SCHEMAS_PATH)
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)

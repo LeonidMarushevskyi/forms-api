@@ -23,11 +23,11 @@ public final class Constants {
     public static final String SYSTEM_INFORMATION_PATH = "system-information";
 
     public static final String FORMS_SCHEMAS_PATH = "forms/schemas";
-    public static final String FORM_SCHEMA_TAG = "Forms Schemas";
+    public static final String FORM_SCHEMA_TAG = "forms-schemas";
 
     public static final String FORMS_INSTANCES_PATH = "forms/instances";
     public static final String FORM_STATUS = "status";
-    public static final String FORMS_INSTANCE_TAG = "Forms Instances ";
+    public static final String FORMS_INSTANCE_TAG = "forms-instances";
 
     private API() {
     }

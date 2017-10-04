@@ -70,11 +70,7 @@ public class JsonType implements UserType, ParameterizedType {
       if (cellContent == null) {
         return null;
       }
-      if (returnedClass().equals(String.class)) {
-        return new String(cellContent.getBytes(StandardCharsets.UTF_8));
-      } else {
-        return mapper.readValue(cellContent.getBytes(StandardCharsets.UTF_8), returnedClass());
-      }
+      return mapper.readValue(cellContent.getBytes(StandardCharsets.UTF_8), returnedClass());
     } catch (final SQLException sqle) {
       throw sqle;
     } catch (final Exception ex) {
@@ -95,15 +91,10 @@ public class JsonType implements UserType, ParameterizedType {
         st.setNull(index, sqlType);
         return;
       }
-
-      if (returnedClass().equals(String.class)) {
-        st.setObject(index, value, sqlType);
-      } else {
-        final StringWriter stringWriter = new StringWriter();
-        mapper.writeValue(stringWriter, value);
-        stringWriter.flush();
-        st.setObject(index, stringWriter.toString(), sqlType);
-      }
+      final StringWriter stringWriter = new StringWriter();
+      mapper.writeValue(stringWriter, value);
+      stringWriter.flush();
+      st.setObject(index, stringWriter.toString(), sqlType);
     } catch (final SQLException sqle) {
       throw sqle;
     } catch (final Exception ex) {

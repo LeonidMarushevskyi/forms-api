@@ -7,7 +7,7 @@
             name = "FormSchemaType",
             typeClass = JsonType.class,
             parameters = {
-                @Parameter(name = SQL_TYPE, value = SQLTypes.OTHER_TYPE_NAME),
+                @Parameter(name = SQL_TYPE, value = SQLTypes.CLOB_TYPE_NAME),
                 @Parameter(
                     name = "returnedClassName",
                     value = "java.lang.String"
@@ -18,7 +18,7 @@
             name = "FormInstanceType",
             typeClass = JsonType.class,
             parameters = {
-                @Parameter(name = SQL_TYPE, value = SQLTypes.OTHER_TYPE_NAME),
+                @Parameter(name = SQL_TYPE, value = SQLTypes.CLOB_TYPE_NAME),
                 @Parameter(
                     name = "returnedClassName",
                     value = "java.lang.String"

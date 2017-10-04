@@ -69,6 +69,10 @@ public class FormsHelper {
         .target(API.FORMS_INSTANCES_PATH + "/" + instance.getName() + "/" + instance.getFormId());
     Response deleteResponse = target.request(MediaType.APPLICATION_JSON).delete();
 
-    schemaHelper.deleteFormsSchema(instance.getName(), instance.getSchemaVersion());
+    deleteSchema(instance.getName(), instance.getSchemaVersion());
+  }
+
+  public void deleteSchema(String name, String version) throws Exception {
+    schemaHelper.deleteFormsSchema(name, version);
   }
 }

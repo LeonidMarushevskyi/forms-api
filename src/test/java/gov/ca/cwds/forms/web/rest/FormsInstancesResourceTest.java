@@ -118,18 +118,19 @@ public class FormsInstancesResourceTest extends BaseApiIntegrationTest {
   }
 
   @Test
-  public void invalidFormTest() {
+  public void invalidFormTest() throws Exception {
     String formName = "test_form";
     String schemaVersion = "V6";
 
     String formContent = fixture("fixtures/testForm-no-required.json");
 
     try {
-      FormInstanceDTO schema = formsHelper.createForm(formName, schemaVersion, formContent);
+      FormInstanceDTO instance = formsHelper.createForm(formName, schemaVersion, formContent);
       fail();
     } catch (Exception e) {
       // Do nothing. expected behaviour
     }
 
+    formsHelper.deleteSchema(formName, schemaVersion);
   }
 }

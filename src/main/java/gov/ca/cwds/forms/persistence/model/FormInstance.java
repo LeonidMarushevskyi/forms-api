@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.annotations.NamedQuery;
+import org.hibernate.annotations.Type;
 
 /**
  * @author CWDS TPT-2 Team
@@ -49,6 +50,7 @@ public class FormInstance implements PersistentObject {
   @Enumerated
   private FormInstanceStatus status;
 
+  @Type(type = "FormInstanceType")
   @Column(name = "content")
   private String content;
 

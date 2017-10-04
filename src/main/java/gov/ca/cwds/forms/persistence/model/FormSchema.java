@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.annotations.NamedQuery;
+import org.hibernate.annotations.Type;
 
 /**
  * @author CWDS TPT-2 Team
@@ -47,6 +48,7 @@ public class FormSchema implements PersistentObject {
   private String description;
 
   @NotNull
+  @Type(type = "FormSchemaType")
   @Column(name = "json_schema", nullable = false)
   private String jsonSchema;
 

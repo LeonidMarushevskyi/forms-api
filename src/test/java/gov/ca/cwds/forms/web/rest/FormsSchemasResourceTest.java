@@ -48,6 +48,8 @@ public class FormsSchemasResourceTest extends BaseApiIntegrationTest {
     FormSchemaDTO responseEntity = response.readEntity(FormSchemaDTO.class);
     assertEquals(200, response.getStatus());
     assertEquals(schema, responseEntity);
+    // Delete test data
+    schemaHelper.deleteFormsSchema(schema.getFormSchemaId());
   }
 
   @Test
@@ -63,6 +65,10 @@ public class FormsSchemasResourceTest extends BaseApiIntegrationTest {
     assertEquals(200, response.getStatus());
     assertTrue(1 < responseEntity.getCollection().size());
     responseEntity.getCollection().forEach(System.out::println);
+
+    // Delete test data
+    schemaHelper.deleteFormsSchema(schema1.getFormSchemaId());
+    schemaHelper.deleteFormsSchema(schema2.getFormSchemaId());
   }
 
   @Test
@@ -84,6 +90,9 @@ public class FormsSchemasResourceTest extends BaseApiIntegrationTest {
     assertEquals(schema, updatedSchema);
     assertEquals(schema, fromServer);
     assertEquals(updatedSchema, fromServer);
+
+    // Delete test data
+    schemaHelper.deleteFormsSchema(schema.getFormSchemaId());
   }
 
   @Test

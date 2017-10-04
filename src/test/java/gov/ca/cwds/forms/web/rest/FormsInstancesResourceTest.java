@@ -50,6 +50,9 @@ public class FormsInstancesResourceTest extends BaseApiIntegrationTest {
     FormInstanceDTO responseEntity = response.readEntity(FormInstanceDTO.class);
     assertEquals(200, response.getStatus());
     assertEquals(formInstance, responseEntity);
+
+    //Cleanup DB
+    formsHelper.deleteFormInstanceAndSchema(formInstance);
   }
 
   @Test
@@ -66,6 +69,10 @@ public class FormsInstancesResourceTest extends BaseApiIntegrationTest {
     assertEquals(200, response.getStatus());
     assertEquals(2, responseEntity.getCollection().size());
     responseEntity.getCollection().forEach(System.out::println);
+
+    //Cleanup DB
+    formsHelper.deleteFormInstanceAndSchema(instance1);
+    formsHelper.deleteFormInstanceAndSchema(instance2);
   }
 
   @Test
@@ -87,15 +94,18 @@ public class FormsInstancesResourceTest extends BaseApiIntegrationTest {
     assertEquals(schema, updatedSchema);
     assertEquals(schema, fromServer);
     assertEquals(updatedSchema, fromServer);
+
+    //Cleanup DB
+    formsHelper.deleteFormInstanceAndSchema(fromServer);
   }
 
   @Test
-  public void deleteSchemaTest() throws Exception {
+  public void deleteInstanceTest() throws Exception {
     String formName = "test_form";
     String schemaVersion = "V5";
-    FormInstanceDTO schema = formsHelper.createForm(formName, schemaVersion);
+    FormInstanceDTO instance = formsHelper.createForm(formName, schemaVersion);
     WebTarget target = clientTestRule
-        .target(API.FORMS_INSTANCES_PATH + "/" + formName + "/" + schema.getFormId());
+        .target(API.FORMS_INSTANCES_PATH + "/" + formName + "/" + instance.getFormId());
 
     Response deleteResponse = target
         .request(MediaType.APPLICATION_JSON)

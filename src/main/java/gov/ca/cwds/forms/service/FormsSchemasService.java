@@ -34,7 +34,14 @@ public class FormsSchemasService extends
 
   @Override
   public FormSchemaDTO find(FormSchemaParameterObject params) {
-    return formSchemaMapper.toFormSchemaDTO(dao.find(params.getId()));
+    if (params.getId() != null) {
+      return formSchemaMapper.toFormSchemaDTO(dao.find(params.getId()));
+    } else if (params.getName() != null && params.getVersion() != null) {
+      return formSchemaMapper
+          .toFormSchemaDTO(dao.findByNameAndVersion(params.getName(), params.getVersion()));
+    } else {
+      throw new IllegalArgumentException("Expected schema Id or Name and Version");
+    }
   }
 
   @Override

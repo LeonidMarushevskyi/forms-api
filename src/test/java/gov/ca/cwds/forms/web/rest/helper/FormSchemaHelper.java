@@ -10,6 +10,7 @@ import gov.ca.cwds.forms.web.rest.RestClientTestRule;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  * @author CWDS TPT-2 Team
@@ -55,4 +56,17 @@ public class FormSchemaHelper {
     return schemaDTOAfter;
   }
 
+  public void deleteFormsSchema(Long schemaId) throws Exception {
+    WebTarget target = clientTestRule
+        .target(API.FORMS_SCHEMAS_PATH + "/" + schemaId);
+    Response deleteResponse = target.request(MediaType.APPLICATION_JSON).delete();
+  }
+
+  public void deleteFormsSchema(String name, String schemaVersion) throws Exception {
+    WebTarget target = clientTestRule
+        .target(API.FORMS_SCHEMAS_PATH + "/" + name + "/" + schemaVersion);
+    Response response = target.request(MediaType.APPLICATION_JSON).get();
+    FormSchemaDTO schema = response.readEntity(FormSchemaDTO.class);
+    deleteFormsSchema(schema.getFormSchemaId());
+  }
 }

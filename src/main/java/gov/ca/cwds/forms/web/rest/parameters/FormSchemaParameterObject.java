@@ -10,7 +10,13 @@ public class FormSchemaParameterObject implements Serializable {
   private static final long serialVersionUID = -658056761734317794L;
 
   private String name;
-  private long id;
+  private String version;
+  private Long id;
+
+  public FormSchemaParameterObject(String name, String version) {
+    this.name = name;
+    this.version = version;
+  }
 
   public FormSchemaParameterObject(String name, Long id) {
     this.name = name;
@@ -32,11 +38,19 @@ public class FormSchemaParameterObject implements Serializable {
     this.name = name;
   }
 
-  public long getId() {
+  public String getVersion() {
+    return version;
+  }
+
+  public void setVersion(String version) {
+    this.version = version;
+  }
+
+  public Long getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 

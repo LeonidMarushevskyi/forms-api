@@ -1,9 +1,10 @@
 package gov.ca.cwds.forms.web.rest;
 
-import static gov.ca.cwds.forms.Constants.API.FORMS_INSTANCE_TAG;
 import static gov.ca.cwds.forms.Constants.API.FORMS_SCHEMAS_PATH;
 import static gov.ca.cwds.forms.Constants.API.FORM_SCHEMA_TAG;
+import static gov.ca.cwds.forms.Constants.API.PathParams.FORM_NAME_PARAMETER;
 import static gov.ca.cwds.forms.Constants.API.PathParams.FORM_SCHEMA_ID_PARAMETER;
+import static gov.ca.cwds.forms.Constants.API.PathParams.FORM_SCHEMA_VERSION_PARAMETER;
 import static gov.ca.cwds.forms.Constants.UnitOfWork.FORMS_UNIT_OF_WORK;
 
 import com.codahale.metrics.annotation.Timed;
@@ -105,6 +106,29 @@ public class FormsSchemasResource {
       @ApiParam(required = true, name = FORM_SCHEMA_ID_PARAMETER, value = "Form Schema Id")
           Long formSchemaId) {
     return resourceDelegate.get(new FormSchemaParameterObject(formSchemaId));
+  }
+
+  @UnitOfWork(FORMS_UNIT_OF_WORK)
+  @GET
+  @Path("/{" + FORM_NAME_PARAMETER + "}" + "/" + "{" + FORM_SCHEMA_VERSION_PARAMETER + "}")
+  @Timed
+  @ApiResponses(
+      value = {
+          @ApiResponse(code = 401, message = "Not Authorized"),
+          @ApiResponse(code = 404, message = "Not found"),
+          @ApiResponse(code = 406, message = "Accept Header not supported")
+      }
+  )
+  @ApiOperation(value = "Returns Form Schema by form name and schema version", response = FormSchemaDTO.class)
+  public Response getFormSchemaByNameAndVersion(
+      @PathParam(FORM_NAME_PARAMETER)
+      @ApiParam(required = true, name = FORM_NAME_PARAMETER, value = "Form name")
+          String formName,
+      @PathParam(FORM_SCHEMA_VERSION_PARAMETER)
+      @ApiParam(required = true, name = FORM_SCHEMA_VERSION_PARAMETER, value = "Form Schema version")
+          String formSchemaVersion
+  ) {
+    return resourceDelegate.get(new FormSchemaParameterObject(formName, formSchemaVersion));
   }
 
   @UnitOfWork(FORMS_UNIT_OF_WORK)

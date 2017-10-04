@@ -10,6 +10,7 @@ import gov.ca.cwds.forms.web.rest.RestClientTestRule;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  * @author CWDS TPT-2 Team
@@ -61,5 +62,13 @@ public class FormsHelper {
     assertEquals(formName, formInstanceDTOAfter.getName());
     assertEquals(schemaVersion, formInstanceDTOAfter.getSchemaVersion());
     return formInstanceDTOAfter;
+  }
+
+  public void deleteFormInstanceAndSchema(FormInstanceDTO instance) throws Exception {
+    WebTarget target = clientTestRule
+        .target(API.FORMS_INSTANCES_PATH + "/" + instance.getName() + "/" + instance.getFormId());
+    Response deleteResponse = target.request(MediaType.APPLICATION_JSON).delete();
+
+    schemaHelper.deleteFormsSchema(instance.getName(), instance.getSchemaVersion());
   }
 }

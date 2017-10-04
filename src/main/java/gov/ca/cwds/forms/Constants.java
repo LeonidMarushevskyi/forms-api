@@ -35,7 +35,8 @@ public final class Constants {
     public static class PathParams {
 
       public static final String FORM_SCHEMA_ID_PARAMETER = "formSchemaId";
-
+      public static final String FORM_SCHEMA_VERSION_PARAMETER = "schemaVersion";
+      
       public static final String FORM_NAME_PARAMETER = "formName";
       public static final String FORM_ID_PARAMETER = "formId";
 

@@ -10,6 +10,7 @@ public class FormParameterObject implements Serializable {
   private static final long serialVersionUID = 1033572121202014389L;
 
   private String name;
+
   private Long id;
 
   public FormParameterObject(String name, Long id) {

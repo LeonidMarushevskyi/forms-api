@@ -2,7 +2,6 @@ package gov.ca.cwds.forms.web.rest;
 
 import static io.dropwizard.testing.FixtureHelpers.fixture;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import gov.ca.cwds.forms.BaseApiIntegrationTest;
@@ -56,15 +55,16 @@ public class FormsInstancesResourceTest extends BaseApiIntegrationTest {
   @Test
   public void getAllFormInstancesTest() throws Exception {
 
-    FormInstanceDTO instance1 = formsHelper.createForm("test_form1", "V2");
-    FormInstanceDTO instance2 = formsHelper.createForm("test_form1", "V3");
+    String formName = "test_form1";
+    FormInstanceDTO instance1 = formsHelper.createForm(formName, "V2");
+    FormInstanceDTO instance2 = formsHelper.createForm(formName, "V3");
 
     WebTarget target = clientTestRule
-        .target(API.FORMS_INSTANCES_PATH + "/test_form1");
+        .target(API.FORMS_INSTANCES_PATH + "/" + formName);
     Response response = target.request(MediaType.APPLICATION_JSON).get();
     FormCollectionDTO responseEntity = response.readEntity(FormCollectionDTO.class);
     assertEquals(200, response.getStatus());
-    assertTrue(1 < responseEntity.getCollection().size());
+    assertEquals(2, responseEntity.getCollection().size());
     responseEntity.getCollection().forEach(System.out::println);
   }
 

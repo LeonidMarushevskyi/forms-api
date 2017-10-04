@@ -30,4 +30,14 @@ public class FormsDao extends BaseDaoImpl<FormInstance> {
     return entities.build();
   }
 
+  public List<FormInstance> findByName(String name) {
+    Session session = this.getSessionFactory().getCurrentSession();
+    Query<FormInstance> query =
+        session.createNamedQuery(FormInstance.NAMED_QUERY_FIND_BY_FORM_NAME, FormInstance.class);
+    query.setParameter("formName", name);
+    ImmutableList.Builder<FormInstance> entities = new ImmutableList.Builder<>();
+    entities.addAll(query.list());
+    return entities.build();
+
+  }
 }

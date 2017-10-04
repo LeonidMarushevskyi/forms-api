@@ -20,14 +20,21 @@ import org.hibernate.annotations.Type;
  * @author CWDS TPT-2 Team
  */
 @NamedQuery(name = FormInstance.NAMED_QUERY_FIND_ALL, query = "FROM FormInstance ORDER BY id DESC")
+@NamedQuery(
+    name = FormInstance.NAMED_QUERY_FIND_BY_FORM_NAME,
+    query = "FROM FormInstance f WHERE f.name = :formName ORDER BY id DESC")
 
 @Entity
 @Table(name = "form_instance")
 public class FormInstance implements PersistentObject {
 
+  public static final String NAMED_QUERY_FIND_BY_FORM_NAME =
+      "gov.ca.cwds.forms.persistence.model.FormInstance.find.by.formName";
+
   public static final String NAMED_QUERY_FIND_ALL =
       "gov.ca.cwds.forms.persistence.model.FormInstance.find.all";
   private static final long serialVersionUID = 8433047669468840813L;
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;

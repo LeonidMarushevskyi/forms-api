@@ -56,11 +56,11 @@ public class FormsInstancesResourceTest extends BaseApiIntegrationTest {
   @Test
   public void getAllFormInstancesTest() throws Exception {
 
-    FormInstanceDTO schema1 = formsHelper.createForm("test_form1", "V2");
-    FormInstanceDTO schema2 = formsHelper.createForm("test_form2", "V3");
+    FormInstanceDTO instance1 = formsHelper.createForm("test_form1", "V2");
+    FormInstanceDTO instance2 = formsHelper.createForm("test_form1", "V3");
 
     WebTarget target = clientTestRule
-        .target(API.FORMS_INSTANCES_PATH);
+        .target(API.FORMS_INSTANCES_PATH + "/test_form1");
     Response response = target.request(MediaType.APPLICATION_JSON).get();
     FormCollectionDTO responseEntity = response.readEntity(FormCollectionDTO.class);
     assertEquals(200, response.getStatus());

@@ -106,15 +106,13 @@ public class FormsInstancesResourceTest extends BaseApiIntegrationTest {
     FormInstanceDTO instance = formsHelper.createForm(formName, schemaVersion);
     WebTarget target = clientTestRule
         .target(API.FORMS_INSTANCES_PATH + "/" + formName + "/" + instance.getFormId());
-
-    Response deleteResponse = target
-        .request(MediaType.APPLICATION_JSON)
-        .delete();
-
+    Response deleteResponse = target.request(MediaType.APPLICATION_JSON).delete();
     Response getResponse = target.request(MediaType.APPLICATION_JSON).get();
-
     assertEquals(200, deleteResponse.getStatus());
     assertEquals(404, getResponse.getStatus());
+
+    // Cleanup DB
+    formsHelper.deleteSchema(formName, schemaVersion);
   }
 
   @Test

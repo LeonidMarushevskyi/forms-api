@@ -46,7 +46,7 @@ public class FormsSchemasDao extends BaseDaoImpl<FormSchema> {
       return query.getSingleResult();
     } catch (NoResultException nre) {
       LOGGER.warn(
-          "No schema found for formName: " + formName + " and schemaVersion: " + schemaVersion);
+          "No schema found for formName: {} and schemaVersion: {}", formName, schemaVersion);
     }
     return null;
   }

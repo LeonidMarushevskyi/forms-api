@@ -10,7 +10,7 @@
                 @Parameter(name = SQL_TYPE, value = SQLTypes.CLOB_TYPE_NAME),
                 @Parameter(
                     name = "returnedClassName",
-                    value = "java.lang.String"
+                    value = "com.fasterxml.jackson.databind.JsonNode"
                 )
             }
         ),
@@ -21,7 +21,7 @@
                 @Parameter(name = SQL_TYPE, value = SQLTypes.CLOB_TYPE_NAME),
                 @Parameter(
                     name = "returnedClassName",
-                    value = "java.lang.String"
+                    value = "com.fasterxml.jackson.databind.JsonNode"
 
                 )
             }

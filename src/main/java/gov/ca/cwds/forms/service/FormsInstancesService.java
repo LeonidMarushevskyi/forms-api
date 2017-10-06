@@ -1,7 +1,7 @@
 package gov.ca.cwds.forms.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.github.fge.jackson.JsonLoader;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fge.jsonschema.core.exceptions.ProcessingException;
 import com.github.fge.jsonschema.core.report.ProcessingReport;
 import com.github.fge.jsonschema.main.JsonSchema;
@@ -13,7 +13,6 @@ import gov.ca.cwds.forms.service.dto.FormInstanceDTO;
 import gov.ca.cwds.forms.service.dto.FormInstanceStatus;
 import gov.ca.cwds.forms.service.mapper.FormInstanceMapper;
 import gov.ca.cwds.forms.web.rest.parameters.FormParameterObject;
-import java.io.IOException;
 
 /**
  * @author CWDS TPT-2 Team
@@ -62,6 +61,7 @@ public class FormsInstancesService extends
   }
 
   private void validateContent(FormInstanceDTO dto) {
+    ObjectMapper objectMapper = new ObjectMapper();
     JsonSchema schema;
     try {
       schema = schemasService.getFormSchema(dto.getName(), dto.getSchemaVersion());
@@ -70,14 +70,7 @@ public class FormsInstancesService extends
           "Can't get Form Schema for name: " + dto.getName() + " and Schema Version: " + dto
               .getSchemaVersion(), e);
     }
-    JsonNode contentJson;
-    try {
-      contentJson = JsonLoader.fromString(dto.getContent());
-    } catch (IOException e) {
-      throw new IllegalArgumentException(
-          "Can't create JsonNode for content: \n\n" + dto.getContent() + "\n\n", e);
-    }
-
+    JsonNode contentJson = objectMapper.valueToTree(dto.getContent());
     try {
       ProcessingReport report = schema.validate(contentJson);
       if (!report.isSuccess()) {

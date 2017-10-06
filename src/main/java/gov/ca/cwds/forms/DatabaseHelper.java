@@ -36,7 +36,6 @@ public class DatabaseHelper {
       throw new LiquibaseException(e);
     }
   }
-
   public void runScript(String script, Map<String, Object> parameters, String schema)
       throws LiquibaseException {
     try {

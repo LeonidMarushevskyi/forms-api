@@ -1,5 +1,6 @@
 package gov.ca.cwds.forms.persistence.hibernate;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -109,17 +110,21 @@ public class JsonType implements UserType, ParameterizedType {
   @Override
   @SuppressFBWarnings("OBJECT_DESERIALIZATION") // There is no external objects
   public Object deepCopy(Object value) {
-    try {
-      ByteArrayOutputStream bos = new ByteArrayOutputStream();
-      ObjectOutputStream oos = new ObjectOutputStream(bos);
-      oos.writeObject(value);
-      oos.flush();
-      oos.close();
-      bos.close();
-      ByteArrayInputStream bais = new ByteArrayInputStream(bos.toByteArray());
-      return new ObjectInputStream(bais).readObject();
-    } catch (ClassNotFoundException | IOException ex) {
-      throw new HibernateException(ex);
+    if (value instanceof JsonNode) {
+      return ((JsonNode) value).deepCopy();
+    } else {
+      try {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(bos);
+        oos.writeObject(value);
+        oos.flush();
+        oos.close();
+        bos.close();
+        ByteArrayInputStream bais = new ByteArrayInputStream(bos.toByteArray());
+        return new ObjectInputStream(bais).readObject();
+      } catch (ClassNotFoundException | IOException ex) {
+        throw new HibernateException(ex);
+      }
     }
   }
 

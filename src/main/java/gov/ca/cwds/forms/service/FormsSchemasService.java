@@ -58,9 +58,10 @@ public class FormsSchemasService extends
 
   public JsonSchema getFormSchema(String name, String schemaVersion) {
     FormSchema formSchema = dao.findByNameAndVersion(name, schemaVersion);
-
+    if (formSchema == null) {
+      return null;
+    }
     ObjectMapper objectMapper = new ObjectMapper();
-
     try {
       return factory.getJsonSchema(objectMapper.valueToTree(formSchema.getJsonSchema()));
     } catch (Exception e) {

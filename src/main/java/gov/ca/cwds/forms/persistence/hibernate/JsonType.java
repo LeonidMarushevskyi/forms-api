@@ -1,5 +1,7 @@
 package gov.ca.cwds.forms.persistence.hibernate;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -16,6 +18,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.Map;
 import java.util.Properties;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
@@ -70,7 +73,14 @@ public class JsonType implements UserType, ParameterizedType {
       if (cellContent == null) {
         return null;
       }
-      return mapper.readValue(cellContent.getBytes(StandardCharsets.UTF_8), returnedClass());
+      if (returnedClassName.equals("java.lang.Map")) {
+        return mapper
+            .readValue(cellContent.getBytes(StandardCharsets.UTF_8), new TypeReference<Map>() {
+            });
+      } else {
+        return mapper.readValue(cellContent.getBytes(StandardCharsets.UTF_8), returnedClass());
+      }
+
     } catch (final SQLException sqle) {
       throw sqle;
     } catch (final Exception ex) {
@@ -109,17 +119,21 @@ public class JsonType implements UserType, ParameterizedType {
   @Override
   @SuppressFBWarnings("OBJECT_DESERIALIZATION") // There is no external objects
   public Object deepCopy(Object value) {
-    try {
-      ByteArrayOutputStream bos = new ByteArrayOutputStream();
-      ObjectOutputStream oos = new ObjectOutputStream(bos);
-      oos.writeObject(value);
-      oos.flush();
-      oos.close();
-      bos.close();
-      ByteArrayInputStream bais = new ByteArrayInputStream(bos.toByteArray());
-      return new ObjectInputStream(bais).readObject();
-    } catch (ClassNotFoundException | IOException ex) {
-      throw new HibernateException(ex);
+    if (value instanceof JsonNode) {
+      return ((JsonNode) value).deepCopy();
+    } else {
+      try {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(bos);
+        oos.writeObject(value);
+        oos.flush();
+        oos.close();
+        bos.close();
+        ByteArrayInputStream bais = new ByteArrayInputStream(bos.toByteArray());
+        return new ObjectInputStream(bais).readObject();
+      } catch (ClassNotFoundException | IOException ex) {
+        throw new HibernateException(ex);
+      }
     }
   }
 

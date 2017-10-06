@@ -1,6 +1,6 @@
 package gov.ca.cwds.forms.service;
 
-import com.github.fge.jackson.JsonLoader;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fge.jsonschema.main.JsonSchema;
 import com.github.fge.jsonschema.main.JsonSchemaFactory;
 import com.google.inject.Inject;
@@ -58,8 +58,12 @@ public class FormsSchemasService extends
 
   public JsonSchema getFormSchema(String name, String schemaVersion) {
     FormSchema formSchema = dao.findByNameAndVersion(name, schemaVersion);
+    if (formSchema == null) {
+      return null;
+    }
+    ObjectMapper objectMapper = new ObjectMapper();
     try {
-      return factory.getJsonSchema(JsonLoader.fromString(formSchema.getJsonSchema()));
+      return factory.getJsonSchema(objectMapper.valueToTree(formSchema.getJsonSchema()));
     } catch (Exception e) {
       throw new IllegalArgumentException(e);
     }

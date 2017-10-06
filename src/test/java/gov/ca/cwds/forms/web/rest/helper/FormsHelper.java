@@ -4,6 +4,9 @@ import static io.dropwizard.testing.FixtureHelpers.fixture;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.fge.jackson.JsonLoader;
 import gov.ca.cwds.forms.Constants.API;
 import gov.ca.cwds.forms.service.dto.FormInstanceDTO;
 import gov.ca.cwds.forms.web.rest.RestClientTestRule;
@@ -18,11 +21,11 @@ import javax.ws.rs.core.Response;
 
 public class FormsHelper {
 
-  public static final String TEST_FORM_NAME = "test_form";
-
   private RestClientTestRule clientTestRule;
 
   private FormSchemaHelper schemaHelper;
+
+  private ObjectMapper objectMapper = new ObjectMapper();
 
   public FormsHelper(RestClientTestRule clientTestRule) {
     this.clientTestRule = clientTestRule;
@@ -45,7 +48,8 @@ public class FormsHelper {
     FormInstanceDTO form = new FormInstanceDTO();
     form.setName(name);
     form.setSchemaVersion(schemaVersion);
-    form.setContent(formContent);
+    JsonNode formContentJson = JsonLoader.fromString(formContent);
+    form.setContent(formContentJson);
     return form;
   }
 

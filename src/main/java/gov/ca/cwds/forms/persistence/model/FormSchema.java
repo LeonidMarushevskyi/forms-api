@@ -1,5 +1,7 @@
 package gov.ca.cwds.forms.persistence.model;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import gov.ca.cwds.data.persistence.PersistentObject;
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -17,6 +19,8 @@ import org.hibernate.annotations.Type;
 /**
  * @author CWDS TPT-2 Team
  */
+@SuppressWarnings("squid:S1948") //JsonNode is serializable
+@SuppressFBWarnings("SE_BAD_FIELD")
 @NamedQuery(name = FormSchema.NAMED_QUERY_FIND_ALL, query = "FROM FormSchema ORDER BY id DESC")
 @NamedQuery(
     name = FormSchema.NAMED_QUERY_FIND_BY_NAME_AND_VERSION,
@@ -50,7 +54,7 @@ public class FormSchema implements PersistentObject {
   @NotNull
   @Type(type = "FormSchemaType")
   @Column(name = "json_schema", nullable = false)
-  private String jsonSchema;
+  private JsonNode jsonSchema;
 
 
   public Long getId() {
@@ -85,11 +89,11 @@ public class FormSchema implements PersistentObject {
     this.description = description;
   }
 
-  public String getJsonSchema() {
+  public JsonNode getJsonSchema() {
     return jsonSchema;
   }
 
-  public void setJsonSchema(String jsonSchema) {
+  public void setJsonSchema(JsonNode jsonSchema) {
     this.jsonSchema = jsonSchema;
   }
 

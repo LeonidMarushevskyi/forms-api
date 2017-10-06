@@ -1,14 +1,18 @@
 package gov.ca.cwds.forms.service.dto;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import gov.ca.cwds.rest.api.Request;
 import gov.ca.cwds.rest.api.Response;
 
 /**
  * @author CWDS TPT-2 Team
  */
-@SuppressWarnings("squid:S2160")
+@SuppressWarnings({"squid:S2160", "squid:S1948"})
+@SuppressFBWarnings("SE_BAD_FIELD")
+//Default reflection hashcode and equals resides in BaseDTO
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class FormSchemaDTO extends BaseDTO implements Request, Response {
 
@@ -22,7 +26,7 @@ public class FormSchemaDTO extends BaseDTO implements Request, Response {
 
   private String description;
 
-  private String jsonSchema;
+  private JsonNode jsonSchema;
 
   public Long getFormSchemaId() {
     return formSchemaId;
@@ -56,12 +60,11 @@ public class FormSchemaDTO extends BaseDTO implements Request, Response {
     this.description = description;
   }
 
-  public String getJsonSchema() {
+  public JsonNode getJsonSchema() {
     return jsonSchema;
   }
 
-  public void setJsonSchema(String jsonSchema) {
+  public void setJsonSchema(JsonNode jsonSchema) {
     this.jsonSchema = jsonSchema;
   }
-
 }

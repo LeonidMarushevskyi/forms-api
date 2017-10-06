@@ -21,8 +21,6 @@ import javax.ws.rs.core.Response;
 
 public class FormsHelper {
 
-  public static final String TEST_FORM_NAME = "test_form";
-
   private RestClientTestRule clientTestRule;
 
   private FormSchemaHelper schemaHelper;

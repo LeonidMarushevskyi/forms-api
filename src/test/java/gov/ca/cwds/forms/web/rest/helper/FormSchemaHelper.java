@@ -21,8 +21,6 @@ import javax.ws.rs.core.Response;
 
 public class FormSchemaHelper {
 
-  public static final String TEST_FORM_NAME = "test_form";
-
   private RestClientTestRule clientTestRule;
 
   private ObjectMapper objectMapper = new ObjectMapper();

@@ -33,5 +33,7 @@ public class JsonTypeTest {
     } catch (Exception e) {
       assertTrue(true);
     }
+
+    assertTrue("{}".equals(jsonType.replace("{}", null, null)));
   }
 }

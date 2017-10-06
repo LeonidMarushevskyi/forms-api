@@ -1,6 +1,5 @@
 package gov.ca.cwds.forms.persistence.hibernate;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -18,7 +17,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.Map;
 import java.util.Properties;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
@@ -73,14 +71,7 @@ public class JsonType implements UserType, ParameterizedType {
       if (cellContent == null) {
         return null;
       }
-      if ("java.lang.Map".equals(returnedClassName)) {
-        return mapper
-            .readValue(cellContent.getBytes(StandardCharsets.UTF_8), new TypeReference<Map>() {
-            });
-      } else {
-        return mapper.readValue(cellContent.getBytes(StandardCharsets.UTF_8), returnedClass());
-      }
-
+      return mapper.readValue(cellContent.getBytes(StandardCharsets.UTF_8), returnedClass());
     } catch (final SQLException sqle) {
       throw sqle;
     } catch (final Exception ex) {

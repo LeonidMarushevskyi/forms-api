@@ -22,7 +22,7 @@ swagger:
   loginUrl: ${LOGIN_URL:-http://localhost:8090/authn/login}
   showSwagger: ${SHOW_SWAGGER:-true}
 
-upgardeDbOnStart: ${UPGRADE_DB_ON_START:-false}
+upgardeDbOnStart: ${UPGRADE_DB_ON_START:-true}
 
 formsDataSourceFactory:
   driverClass: org.h2.Driver
@@ -37,7 +37,6 @@ formsDataSourceFactory:
   minIdleTime: 1 minute
   properties:
       hibernate.dialect: gov.ca.cwds.forms.persistence.hibernate.dialect.JsonbSupportH2Dialect
-      #hibernate.default_schema: CALSNS
       hibernate.id.new_generator_mappings: false
       hibernate.show_sql: false
       hibernate.cache.use_second_level_cache: true

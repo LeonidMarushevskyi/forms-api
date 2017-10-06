@@ -54,6 +54,7 @@ public class FormSchemaHelper {
 
   public FormSchemaDTO createFormsSchema(String formName, String schemaVersion, String jsonSchema)
       throws Exception {
+    deleteFormsSchema(formName, schemaVersion);
     FormSchemaDTO schemaDTOBefore = getSchema(formName, schemaVersion, jsonSchema);
     FormSchemaDTO schemaDTOAfter = postSchema(schemaDTOBefore);
     assertNotNull(schemaDTOAfter);

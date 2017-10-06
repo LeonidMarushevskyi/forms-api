@@ -1,6 +1,7 @@
 package gov.ca.cwds.forms.persistence.model;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import gov.ca.cwds.data.persistence.PersistentObject;
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -19,6 +20,7 @@ import org.hibernate.annotations.Type;
  * @author CWDS TPT-2 Team
  */
 @SuppressWarnings("squid:S1948") //JsonNode is serializable
+@SuppressFBWarnings("SE_BAD_FIELD")
 @NamedQuery(name = FormSchema.NAMED_QUERY_FIND_ALL, query = "FROM FormSchema ORDER BY id DESC")
 @NamedQuery(
     name = FormSchema.NAMED_QUERY_FIND_BY_NAME_AND_VERSION,

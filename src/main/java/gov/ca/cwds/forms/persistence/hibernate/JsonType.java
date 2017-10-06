@@ -73,7 +73,7 @@ public class JsonType implements UserType, ParameterizedType {
       if (cellContent == null) {
         return null;
       }
-      if (returnedClassName.equals("java.lang.Map")) {
+      if ("java.lang.Map".equals(returnedClassName)) {
         return mapper
             .readValue(cellContent.getBytes(StandardCharsets.UTF_8), new TypeReference<Map>() {
             });

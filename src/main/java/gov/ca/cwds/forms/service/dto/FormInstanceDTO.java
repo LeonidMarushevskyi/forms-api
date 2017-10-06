@@ -3,6 +3,7 @@ package gov.ca.cwds.forms.service.dto;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import gov.ca.cwds.rest.api.Request;
 import gov.ca.cwds.rest.api.Response;
 import javax.validation.constraints.NotNull;
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotNull;
  */
 @SuppressWarnings({"squid:S2160", "squid:S1948"})
 //Default reflection hashcode and equals resides in BaseDTO
+@SuppressFBWarnings("SE_BAD_FIELD")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class FormInstanceDTO extends BaseDTO implements Request, Response {
 

@@ -18,8 +18,6 @@ import javax.ws.rs.core.Response;
 
 public class FormSchemaHelper {
 
-  public static final String TEST_FORM_NAME = "test_form";
-
   private RestClientTestRule clientTestRule;
 
   public FormSchemaHelper(RestClientTestRule clientTestRule) {
@@ -66,6 +64,9 @@ public class FormSchemaHelper {
     WebTarget target = clientTestRule
         .target(API.FORMS_SCHEMAS_PATH + "/" + name + "/" + schemaVersion);
     Response response = target.request(MediaType.APPLICATION_JSON).get();
+    if (404 == response.getStatus()) {
+      return;
+    }
     FormSchemaDTO schema = response.readEntity(FormSchemaDTO.class);
     deleteFormsSchema(schema.getFormSchemaId());
   }

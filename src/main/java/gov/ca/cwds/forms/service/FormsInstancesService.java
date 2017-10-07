@@ -6,7 +6,7 @@ import com.github.fge.jsonschema.core.exceptions.ProcessingException;
 import com.github.fge.jsonschema.core.report.ProcessingReport;
 import com.github.fge.jsonschema.main.JsonSchema;
 import com.google.inject.Inject;
-import gov.ca.cwds.forms.exceptions.FormValidationException;
+import gov.ca.cwds.forms.exceptions.FormInstanceValidationException;
 import gov.ca.cwds.forms.persistence.dao.FormsDao;
 import gov.ca.cwds.forms.persistence.model.FormInstance;
 import gov.ca.cwds.forms.service.dto.FormInstanceDTO;
@@ -74,7 +74,7 @@ public class FormsInstancesService extends
     try {
       ProcessingReport report = schema.validate(contentJson);
       if (!report.isSuccess()) {
-        throw new FormValidationException(report);
+        throw new FormInstanceValidationException(report);
       }
     } catch (ProcessingException e) {
       throw new IllegalArgumentException(e);

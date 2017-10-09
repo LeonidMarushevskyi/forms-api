@@ -32,7 +32,7 @@ public class FormValidationExceptionMapperImpl implements
     ProcessingReport report = pe.getReport();
     Set<IssueDetails> validationDetailsList = new HashSet<>();
     report.forEach(processingMessage -> {
-      if (LogLevel.ERROR.equals(processingMessage.getLogLevel())) {
+      if (LogLevel.ERROR == processingMessage.getLogLevel()) {
         IssueDetailsExt details = new IssueDetailsExt();
         details.setType(IssueType.JSON_PROCESSING_EXCEPTION);
         details.setIncidentId(loggingContext.getUniqueId());

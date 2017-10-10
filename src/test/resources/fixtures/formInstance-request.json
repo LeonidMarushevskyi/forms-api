@@ -1,0 +1,10 @@
+{
+  "name": "test-form",
+  "schema_version": "0.1",
+  "content": {
+    "applicantFirstName": "First",
+    "applicantMiddleName": "Middle",
+    "applicantLastName": "Last",
+    "applicantAge": 35
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "form_name": "test-form",
+  "schema_version": "0.1",
+  "description": "Just a test form",
+  "json_schema": {
+    "type": "object",
+    "title": "Test Form",
+    "properties": {
+      "applicantFirstName": {
+        "title": "First Name",
+        "type": "string"
+      },
+      "applicantMiddleName": {
+        "title": "Middle Name",
+        "type": "string",
+        "description": "Middle name field is not required"
+      },
+      "applicantLastName": {
+        "title": "Last Name",
+        "type": "string",
+        "maxLength": 20,
+        "validationMessage": "Last Name should not be more then 20 characters"
+      },
+      "applicantAge": {
+        "title": "Age",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "applicantFirstName",
+      "applicantLastName",
+      "applicantAge"
+    ]
+  }
+}

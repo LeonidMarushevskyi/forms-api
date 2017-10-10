@@ -31,6 +31,7 @@ project.ext {
     projectDockerAppName = 'forms-api'
     projectMajorVersion = '0.4.3'
     projectVersion = projectMajorVersion + '-SNAPSHOT'
+    //projectVersion = projectMajorVersion
     dropwizardVersion = '1.1.0'
     coreApiVersion = '3.6.438'
     mapstructVersion = '1.1.0.Final'

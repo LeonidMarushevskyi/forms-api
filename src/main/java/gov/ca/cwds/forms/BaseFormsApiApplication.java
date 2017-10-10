@@ -4,9 +4,11 @@ import com.codahale.metrics.health.HealthCheck;
 import com.codahale.metrics.health.HealthCheckRegistry;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.google.inject.Injector;
+import gov.ca.cwds.forms.exceptions.FormValidationExceptionMapperImpl;
 import gov.ca.cwds.forms.inject.InjectorHolder;
 import gov.ca.cwds.forms.web.rest.filters.RequestExecutionContextFilter;
 import gov.ca.cwds.forms.web.rest.filters.RequestResponseLoggingFilter;
+import gov.ca.cwds.logging.LoggingContext;
 import gov.ca.cwds.rest.BaseApiApplication;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.setup.Environment;
@@ -29,6 +31,9 @@ public abstract class BaseFormsApiApplication<T extends FormsApiConfiguration> e
 
   @Override
   public void runInternal(T configuration, Environment environment) {
+
+    registerCustomExceptionMappers(environment);
+
     environment.getObjectMapper()
         .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
 
@@ -70,6 +75,11 @@ public abstract class BaseFormsApiApplication<T extends FormsApiConfiguration> e
     if (!result.isHealthy()) {
       LOG.error("Fail - {}: {}", key, result.getMessage());
     }
+  }
+
+  private void registerCustomExceptionMappers(Environment environment) {
+    LoggingContext loggingContext = guiceBundle.getInjector().getInstance(LoggingContext.class);
+    environment.jersey().register(new FormValidationExceptionMapperImpl(loggingContext));
   }
 
   private void upgardeDB(FormsApiConfiguration configuration) {

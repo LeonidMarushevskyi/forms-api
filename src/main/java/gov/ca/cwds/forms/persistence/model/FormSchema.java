@@ -56,6 +56,9 @@ public class FormSchema implements PersistentObject {
   @Column(name = "json_schema", nullable = false)
   private JsonNode jsonSchema;
 
+  @Type(type = "FormSchemaType")
+  @Column(name = "ui_schema")
+  private JsonNode uiSchema;
 
   public Long getId() {
     return id;
@@ -95,6 +98,14 @@ public class FormSchema implements PersistentObject {
 
   public void setJsonSchema(JsonNode jsonSchema) {
     this.jsonSchema = jsonSchema;
+  }
+
+  public JsonNode getUiSchema() {
+    return uiSchema;
+  }
+
+  public void setUiSchema(JsonNode uiSchema) {
+    this.uiSchema = uiSchema;
   }
 
   @Override

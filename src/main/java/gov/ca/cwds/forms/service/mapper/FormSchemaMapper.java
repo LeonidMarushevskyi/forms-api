@@ -20,6 +20,7 @@ public interface FormSchemaMapper {
   @Mapping(target = "schemaVersion", source = "schemaVersion")
   @Mapping(target = "description", source = "description")
   @Mapping(target = "jsonSchema", source = "jsonSchema")
+  @Mapping(target = "uiSchema", source = "uiSchema")
   FormSchema toFormSchema(FormSchemaDTO dto);
 
 
@@ -28,6 +29,7 @@ public interface FormSchemaMapper {
   @Mapping(target = "schemaVersion", source = "schemaVersion")
   @Mapping(target = "description", source = "description")
   @Mapping(target = "jsonSchema", source = "jsonSchema")
+  @Mapping(target = "uiSchema", source = "uiSchema")
   @Mapping(target = "messages", ignore = true)
   FormSchemaDTO toFormSchemaDTO(FormSchema formSchema);
 }

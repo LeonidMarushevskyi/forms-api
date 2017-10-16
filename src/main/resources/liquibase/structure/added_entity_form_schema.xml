@@ -32,4 +32,10 @@
     />
   </changeSet>
 
+  <changeSet author="TPT2_team" id="form_schema_add_ui_schema-1">
+    <addColumn tableName="form_schema">
+      <column name="ui_schema" type="${type.jsonb}"/>
+    </addColumn>
+  </changeSet>
+
 </databaseChangeLog>

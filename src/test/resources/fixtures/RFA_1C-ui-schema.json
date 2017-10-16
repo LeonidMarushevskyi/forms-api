@@ -1,0 +1,50 @@
+{
+  "ui:title": "Resource Family Criminal Record Statement (RFA O1C)",
+  "ui:order": [
+    "application_county",
+    "child_identified",
+    "child_in_home",
+    "identified_children"
+  ],
+  "application_county": {
+    "ui:field": "dictionary"
+  },
+  "child_identified": {
+    "ui:widget": "radio",
+    "classNames": "danger"
+  },
+  "child_in_home": {
+    "ui:widget": "radio"
+  },
+  "identified_children": {
+    "items": {
+      "county_of_jurisdiction": {
+        "ui:field": "dictionary"
+      },
+      "name_suffix": {
+        "ui:field": "dictionary"
+      },
+      "gender": {
+        "ui:field": "dictionary"
+      },
+      "relationship_to_applicants": {
+        "items": {
+          "relationship_to_applicant": {
+            "ui:field": "dictionary"
+          }
+        }
+      },
+      "school_address": {
+        "type": {
+          "ui:field": "dictionary"
+        },
+        "state": {
+          "ui:field": "dictionary"
+        }
+      },
+      "school_grade": {
+        "ui:field": "dictionary"
+      }
+    }
+  }
+}

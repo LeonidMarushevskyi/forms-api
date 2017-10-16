@@ -28,6 +28,8 @@ public class FormSchemaDTO extends BaseDTO implements Request, Response {
 
   private JsonNode jsonSchema;
 
+  private JsonNode uiSchema;
+
   public Long getFormSchemaId() {
     return formSchemaId;
   }
@@ -66,5 +68,13 @@ public class FormSchemaDTO extends BaseDTO implements Request, Response {
 
   public void setJsonSchema(JsonNode jsonSchema) {
     this.jsonSchema = jsonSchema;
+  }
+
+  public JsonNode getUiSchema() {
+    return uiSchema;
+  }
+
+  public void setUiSchema(JsonNode uiSchema) {
+    this.uiSchema = uiSchema;
   }
 }

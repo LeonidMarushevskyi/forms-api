@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {render} from "react-dom";
 import Request from 'superagent';
 import Form from "react-jsonschema-form";
-import {config} from "config";
+import {config} from "./config";
 import {customFields} from "./schemas/CustomFields"
 import {stores} from "./stores/InstancesStore"
 

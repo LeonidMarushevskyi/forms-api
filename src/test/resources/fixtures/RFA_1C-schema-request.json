@@ -1025,7 +1025,8 @@
       "application_county",
       "child_identified",
       "child_in_home",
-      "identified_children"
+      "identified_children",
+      "*"
     ],
     "application_county": {
       "ui:field": "dictionary"

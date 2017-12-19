@@ -33,7 +33,7 @@ project.ext {
     projectVersion = projectMajorVersion + '-SNAPSHOT'
     //projectVersion = projectMajorVersion
     dropwizardVersion = '1.1.0'
-    coreApiVersion = '3.6.438'
+    coreApiVersion = '0.5.3_TPT2-658_3'
     mapstructVersion = '1.1.0.Final'
     mainClass = 'gov.ca.cwds.forms.FormsApiApplication'
 }

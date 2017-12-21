@@ -53,7 +53,7 @@ node ('dora-slave'){
 		  rtGradle.useWrapper = true
    }
    stage('Build'){
-		def buildInfo = rtGradle.run buildFile: 'build.gradle', tasks: 'jar'
+		def buildInfo = rtGradle.run buildFile: 'build.gradle', tasks: 'jar -DReleaseDocker=$RELEASE_DOCKER -DBuildNumber=$BUILD_NUMBER'
    }
    stage('Unit Tests') {
        buildInfo = rtGradle.run buildFile: 'build.gradle', tasks: 'test jacocoTestReport', switches: '--stacktrace'
@@ -74,7 +74,7 @@ node ('dora-slave'){
 	    //rtGradle.deployer repo:'libs-release', server: serverArti
 	    rtGradle.deployer.deployArtifacts = true
 		//buildInfo = rtGradle.run buildFile: 'build.gradle', tasks: 'artifactoryPublish'
-		buildInfo = rtGradle.run buildFile: 'build.gradle', tasks: 'publish'
+		buildInfo = rtGradle.run buildFile: 'build.gradle', tasks: 'publish -DReleaseDocker=$RELEASE_DOCKER -DBuildNumber=$BUILD_NUMBER'
 		rtGradle.deployer.deployArtifacts = false
 	}
 	stage ('Build Docker'){

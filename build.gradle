@@ -29,13 +29,20 @@ project.ext {
     projectGroup = 'gov.ca.cwds.forms'
     projectDockerGroup = 'cwds'
     projectDockerAppName = 'forms-api'
-    projectMajorVersion = '0.4.3'
-    projectVersion = projectMajorVersion + '-SNAPSHOT'
+    projectMajorVersion = '0.5.3'
+    releaseDocker = System.getProperty("ReleaseDocker")
+    buildNumber = System.getProperty('BuildNumber')
+    projectVersion = (releaseDocker == 'true' && buildNumber != null  ? projectMajorVersion + '_' + buildNumber + '-RC' : projectMajorVersion + '-SNAPSHOT' )
     //projectVersion = projectMajorVersion
     dropwizardVersion = '1.1.0'
     coreApiVersion = '0.5.3_TPT2-658_3'
     mapstructVersion = '1.1.0.Final'
     mainClass = 'gov.ca.cwds.forms.FormsApiApplication'
+
+    // Publishing configuration
+    snapshotMavenRepo = "http://sonar.dev.cwds.io:8081/artifactory/repo"
+    releaseMavenRepo = "http://sonar.dev.cwds.io:8081/artifactory/libs-release"
+    artifactoryRepo = ((releaseDocker == 'true') ? releaseMavenRepo : snapshotMavenRepo)
 }
 
 group projectGroup
@@ -265,7 +272,7 @@ publishing {
     repositories {
         //mavenLocal()
         maven {
-            url "http://sonar.dev.cwds.io:8081/artifactory/repo"
+            url artifactoryRepo
         }
     }
 }

@@ -30,10 +30,16 @@ project.ext {
     projectDockerGroup = 'cwds'
     projectDockerAppName = 'forms-api'
     projectMajorVersion = '0.5.3'
-    releaseDocker = System.getProperty("ReleaseDocker")
+
+    isRelease = System.getProperty("Release")
     buildNumber = System.getProperty('BuildNumber')
-    projectVersion = (releaseDocker == 'true' && buildNumber != null  ? projectMajorVersion + '_' + buildNumber + '-RC' : projectMajorVersion + '-SNAPSHOT' )
-    //projectVersion = projectMajorVersion
+    customVersion = System.getProperty('CustomVersion')
+
+    projectSnapshotVersion = projectMajorVersion + "-SNAPSHOT"
+    projectReleaseVersion = (customVersion == null || customVersion == "" || customVersion.startsWith('$') ? projectMajorVersion + '_' + buildNumber + '-RC' : customVersion )
+    projectVersion = (isRelease ? projectReleaseVersion : projectSnapshotVersion )
+    dockerTag = projectVersion
+
     dropwizardVersion = '1.1.0'
     coreApiVersion = '3.6.438'
     mapstructVersion = '1.1.0.Final'
@@ -42,7 +48,7 @@ project.ext {
     // Publishing configuration
     snapshotMavenRepo = "http://sonar.dev.cwds.io:8081/artifactory/repo"
     releaseMavenRepo = "http://sonar.dev.cwds.io:8081/artifactory/libs-release"
-    artifactoryRepo = ((releaseDocker == 'true') ? releaseMavenRepo : snapshotMavenRepo)
+    artifactoryRepo = ((isRelease == 'true') ? releaseMavenRepo : snapshotMavenRepo)
 }
 
 group projectGroup
@@ -199,14 +205,11 @@ task copyDist(type: Copy, dependsOn: shadowJar) {
 }
 
 
-def releaseDocker = System.getProperty("ReleaseDocker")
-def buildNumber = System.getProperty('BuildNumber')
-def dockerTag = (releaseDocker == 'true' && buildNumber != null  ? projectMajorVersion + '_' + buildNumber + '-RC' : projectVersion )
-
 task readArguments() {
     doLast{
-        println "ReleaseDocker: " + releaseDocker
+        println "Release: " + isRelease
         println "Build: " + buildNumber
+        println "Project Version" + projectVersion
         println "Docker Tag: " + dockerTag
     }
 }
@@ -266,11 +269,9 @@ publishing {
             from components.java
             groupId projectGroup
             artifactId rootProject.name
-            version version + ((System.properties.getProperty('build') != null) ? '.' + System.properties.getProperty('build') : '')
         }
     }
     repositories {
-        //mavenLocal()
         maven {
             url artifactoryRepo
         }

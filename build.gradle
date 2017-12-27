@@ -48,7 +48,7 @@ project.ext {
     // Publishing configuration
     snapshotMavenRepo = "http://sonar.dev.cwds.io:8081/artifactory/repo"
     releaseMavenRepo = "http://sonar.dev.cwds.io:8081/artifactory/libs-release"
-    artifactoryRepo = ((releaseDocker == 'true') ? releaseMavenRepo : snapshotMavenRepo)
+    artifactoryRepo = ((isRelease == 'true') ? releaseMavenRepo : snapshotMavenRepo)
 }
 
 group projectGroup
@@ -205,14 +205,11 @@ task copyDist(type: Copy, dependsOn: shadowJar) {
 }
 
 
-def releaseDocker = System.getProperty("ReleaseDocker")
-def buildNumber = System.getProperty('BuildNumber')
-def dockerTag = (releaseDocker == 'true' && buildNumber != null  ? projectMajorVersion + '_' + buildNumber + '-RC' : projectVersion )
-
 task readArguments() {
     doLast{
-        println "ReleaseDocker: " + releaseDocker
+        println "Release: " + isRelease
         println "Build: " + buildNumber
+        println "Project Version" + projectVersion
         println "Docker Tag: " + dockerTag
     }
 }

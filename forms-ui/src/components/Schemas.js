@@ -18,7 +18,10 @@ class Schemas extends Component {
         schemas: items,
         currentSchema: items ? items[0] : undefined
       });
-    })
+    }).catch(reason => {
+      console.log(reason);
+    });
+
   }
 
   handleClickOnSchema(e) {

@@ -14,11 +14,14 @@ class InstancesStore extends EventEmitter {
   }
 
   loadInstances(name) {
+    console.log('!!!! name: ' + name);
     if (name) {
-      const url = config.instances_url + name;
+      const url = config.instances_url + '/' + name;
       Request.get(url).then((response) => {
         this.instances = response.body.items;
         this.emit("formInstancesReload");
+      }).catch(reason => {
+        console.log('!!!!' + reason);
       })
     }
   }

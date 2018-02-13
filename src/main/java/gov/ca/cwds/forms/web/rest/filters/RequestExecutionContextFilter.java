@@ -2,7 +2,7 @@ package gov.ca.cwds.forms.web.rest.filters;
 
 import com.google.inject.Inject;
 import gov.ca.cwds.forms.web.rest.filters.RequestExecutionContext.Parameter;
-import gov.ca.cwds.security.shiro.web.PerryAuthenticatingFilter;
+import gov.ca.cwds.security.web.PerryAuthenticatingFilter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import javax.servlet.Filter;

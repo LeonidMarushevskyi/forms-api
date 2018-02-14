@@ -30,6 +30,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -65,9 +66,11 @@ public class FormsPackagesResource {
           @ApiResponse(code = 406, message = "Accept Header not supported")
       }
   )
-  @ApiOperation(value = "Returns All available Form Schemas", response = FormsPackageCollectionDTO.class)
+  @ApiOperation(value = "Returns Forms Packages", response = FormsPackageCollectionDTO.class)
   public Response getFormsPackages(
+      @QueryParam(FORMS_PACKAGE_EXT_ID_PARAM)
       @ApiParam(name = FORMS_PACKAGE_EXT_ID_PARAM, value = "External entity Id") String extId,
+      @QueryParam(FORMS_PACKAGE_STATUS_PARAM)
       @ApiParam(name = FORMS_PACKAGE_STATUS_PARAM, value = "Package Status", allowableValues = "SUBMITTED, INPROGRESS") String status) {
     return collectionResourceDelegate.get(new FormsPackageParameterObject(extId, status));
   }

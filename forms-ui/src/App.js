@@ -14,7 +14,7 @@ const log = (type) => console.log.bind(console, type);
 const onSubmit = (instanceData) => {
   console.log("form is submitted");
   Request
-  .post(config.instances_url)
+  .post(config.instances_url + "?token=" + config.token)
   .send(instanceData)
   .set('Accept', 'application/json')
   .end((err, res) => {

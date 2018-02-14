@@ -11,7 +11,7 @@ class Schemas extends Component {
   }
 
   componentWillMount() {
-    const url = config.schemas_url;
+    const url = config.schemas_url + "?token=" + config.token;
     Request.get(url).then((response) => {
       const items = response.body.items;
       this.setState({

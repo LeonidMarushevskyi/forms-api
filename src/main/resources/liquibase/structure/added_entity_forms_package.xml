@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+  <changeSet author="TPT2_team" id="forms_package-1">
+    <createTable tableName="forms_package">
+      <column autoIncrement="${autoIncrement}" name="id" type="${type.long}">
+        <constraints nullable="false" primaryKey="true"/>
+      </column>
+      <column name="ext_entity_id" type="${type.string}(32)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="status" type="${type.string}(24)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description" type="${type.string}(1024)">
+        <constraints nullable="true"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+</databaseChangeLog>

@@ -16,11 +16,15 @@ import java.util.List;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class FormsPackageDTO extends BaseDTO implements Request, Response {
 
+  private static final long serialVersionUID = -919781566975359710L;
+  
   private Long id;
 
   private String externalEntityId;
 
   private String description;
+
+  private String status;
 
   private List<FormInstanceDTO> formInstances;
 
@@ -46,6 +50,14 @@ public class FormsPackageDTO extends BaseDTO implements Request, Response {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
   }
 
   public List<FormInstanceDTO> getFormInstances() {

@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class FormInstanceDTO extends BaseDTO implements Request, Response {
 
-  private static final long serialVersionUID = -8643054699905680947L;
+  private static final long serialVersionUID = -8643054699905680948L;
 
   private String formId;
 
@@ -30,6 +30,8 @@ public class FormInstanceDTO extends BaseDTO implements Request, Response {
   private Long parentFormId;
 
   private String parentFormName;
+
+  private Long packageId;
 
   @NotNull
   private JsonNode content;
@@ -72,6 +74,14 @@ public class FormInstanceDTO extends BaseDTO implements Request, Response {
 
   public void setParentFormName(String parentFormName) {
     this.parentFormName = parentFormName;
+  }
+
+  public Long getPackageId() {
+    return packageId;
+  }
+
+  public void setPackageId(Long packageId) {
+    this.packageId = packageId;
   }
 
   public JsonNode getContent() {

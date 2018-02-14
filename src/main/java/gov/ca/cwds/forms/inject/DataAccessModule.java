@@ -8,6 +8,7 @@ import com.google.inject.Provides;
 import gov.ca.cwds.forms.FormsApiConfiguration;
 import gov.ca.cwds.forms.persistence.model.FormInstance;
 import gov.ca.cwds.forms.persistence.model.FormSchema;
+import gov.ca.cwds.forms.persistence.model.FormsPackage;
 import io.dropwizard.db.PooledDataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.hibernate.SessionFactoryFactory;
@@ -22,7 +23,8 @@ public class DataAccessModule extends AbstractModule {
 
   private final ImmutableList<Class<?>> formsEntities = ImmutableList.<Class<?>>builder().add(
       FormSchema.class,
-      FormInstance.class
+      FormInstance.class,
+      FormsPackage.class
   ).build();
 
   private final HibernateBundle<FormsApiConfiguration> formsHibernateBundle =

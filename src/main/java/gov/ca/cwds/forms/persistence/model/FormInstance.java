@@ -8,14 +8,19 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.annotations.NamedQuery;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
 
 /**
@@ -61,6 +66,16 @@ public class FormInstance implements PersistentObject {
   @Column(name = "status")
   @Enumerated
   private FormInstanceStatus status;
+
+  @NotFound(action = NotFoundAction.IGNORE)
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(
+      name = "PACKAGE_ID",
+      referencedColumnName = "ID",
+      insertable = false,
+      updatable = false                                          
+  )
+  private FormsPackage formsPackage;
 
   @Type(type = "FormInstanceType")
   @Column(name = "content")
@@ -121,6 +136,14 @@ public class FormInstance implements PersistentObject {
 
   public void setContent(JsonNode content) {
     this.content = content;
+  }
+
+  public FormsPackage getFormsPackage() {
+    return formsPackage;
+  }
+
+  public void setFormsPackage(FormsPackage formsPackage) {
+    this.formsPackage = formsPackage;
   }
 
   @Override

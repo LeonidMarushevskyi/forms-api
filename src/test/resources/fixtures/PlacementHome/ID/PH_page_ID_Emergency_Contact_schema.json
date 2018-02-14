@@ -1,0 +1,96 @@
+{
+  "title": "Placement Home ID Disaster Emergency Contact Information",
+  "type": "object",
+  "properties": {
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "phone": {
+      "title": "Phone",
+      "$ref": "#/definitions/phone_with_ext"
+    },
+    "alt_phone": {
+      "title": "Alternate Phone",
+      "$ref": "#/definitions/phone_with_ext"
+    },
+    "email": {
+      "title": "E-mail address",
+      "type": "string"
+    },
+    "street_no": {
+      "title": "Street No.",
+      "type": "string"
+    },
+    "street_name": {
+      "title": "Street Name.",
+      "type": "string"
+    },
+    "city": {
+      "title": "City",
+      "type": "string"
+    },
+    "state": {
+      "title": "State",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "zip": {
+      "title": "ZIP",
+      "type": "string"
+    },
+    "zip_ext": {
+      "title": "ZIP Ext.",
+      "type": "string"
+    },
+    "foreign_country": {
+      "title": "Foreign Country",
+      "$ref": "#/definitions/dictionary"
+    },
+    "foreign_zip": {
+      "title": "Foreign ZIP",
+      "type": "string"
+    },
+    "foreign_addr_desc": {
+      "title": "Foreign Address Description (Province name, etc)",
+      "type": "string"
+    }
+  },
+
+  "definitions": {
+    "dictionary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "phone": {
+      "type": "string"
+    },
+    "phone_with_ext": {
+      "type": "object",
+      "properties": {
+        "phone": {
+          "title": "Phone",
+          "$ref": "#/definitions/phone"
+        },
+        "ext": {
+          "title": "Ext.",
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

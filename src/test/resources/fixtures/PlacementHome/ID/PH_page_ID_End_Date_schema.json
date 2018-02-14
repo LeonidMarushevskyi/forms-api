@@ -1,0 +1,34 @@
+{
+  "title": "Placement Home End Date",
+  "type": "object",
+  "properties": {
+    "end_date": {
+      "title": "End Date",
+      "type": "string",
+      "format": "date",
+      "examples": ["2007-07-14"]
+    },
+    "reason_type": {
+      "title": "Reason Type",
+      "$ref": "#/definitions/dictionary"
+    },
+    "comments": {
+      "title": "Comments",
+      "type": "string"
+    }
+  },
+
+  "definitions": {
+    "dictionary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

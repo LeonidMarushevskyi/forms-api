@@ -25,9 +25,13 @@ public final class Constants {
     public static final String FORMS_SCHEMAS_PATH = "forms/schemas";
     public static final String FORM_SCHEMA_TAG = "forms-schemas";
 
+
     public static final String FORMS_INSTANCES_PATH = "forms/instances";
     public static final String FORM_STATUS = "status";
     public static final String FORMS_INSTANCE_TAG = "forms-instances";
+
+    public static final String FORMS_PACKAGES_PATH = "forms/packages";
+    public static final String FORMS_PACKAGES_TAG = "forms-packages";
 
     private API() {
     }
@@ -40,6 +44,9 @@ public final class Constants {
       public static final String FORM_NAME_PARAMETER = "formName";
       public static final String FORM_ID_PARAMETER = "formId";
 
+      public static final String FORMS_PACKAGE_ID_PARAMETER = "formId";
+      public static final String FORMS_PACKAGE_EXT_ID_PARAM = "extId";
+      public static final String FORMS_PACKAGE_STATUS_PARAM = "status";
 
       private PathParams() {
       }

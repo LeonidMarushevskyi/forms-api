@@ -30,6 +30,7 @@ public interface FormInstanceMapper {
   @Mapping(target = "schemaVersion", source = "schemaVersion")
   @Mapping(target = "parentFormId", source = "parentFormId")
   @Mapping(target = "parentFormName", source = "parentFormName")
+  @Mapping(target = "packageId", source = "formsPackage.id")
   @Mapping(target = "content", source = "content")
   @Mapping(target = "messages", ignore = true)
   FormInstanceDTO toFormDTO(FormInstance formInstance);

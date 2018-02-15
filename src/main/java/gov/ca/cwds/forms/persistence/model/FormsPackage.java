@@ -10,8 +10,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.NamedQuery;
 
 /**
@@ -53,7 +56,9 @@ public class FormsPackage implements PersistentObject {
   @Column(name="status", nullable = false)
   private String status;
 
-  @OneToMany(fetch = FetchType.EAGER, mappedBy = "formsPackage")
+  @OneToMany(fetch = FetchType.EAGER)
+  @JoinColumn(name="package_id")
+  @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE, CascadeType.DETACH})
   private List<FormInstance> formInstances;
 
   public Long getId() {

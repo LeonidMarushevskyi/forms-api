@@ -16,6 +16,9 @@ public class FormsPackageService extends
   private FormsPackageDao dao;
 
   @Inject
+  private FormsInstancesService instancesService;
+
+  @Inject
   private FormsPackageMapper formsPackageMapper;
 
   @Inject
@@ -25,11 +28,9 @@ public class FormsPackageService extends
 
   @Override
   public FormsPackageDTO create(FormsPackageDTO dto) {
-    FormsPackage entity = formsPackageMapper.toEntity(dto);
-    FormsPackageDTO formsPackageDTO = formsPackageMapper.toDTO(dao.create(entity));
-    // May be form instances should be created as well
-
-    return formsPackageDTO;
+    final FormsPackage entity = formsPackageMapper.toEntity(dto);
+    final FormsPackage saved = dao.create(entity);
+    return find(new FormsPackageParameterObject(saved.getId()));
   }
 
   @Override
@@ -45,9 +46,7 @@ public class FormsPackageService extends
   public FormsPackageDTO update(FormsPackageParameterObject params, FormsPackageDTO dto) {
     FormsPackage entity = formsPackageMapper.toEntity(dto);
     entity.setId(params.getId());
-    FormsPackageDTO formsPackageDTO = formsPackageMapper.toDTO(dao.update(entity));
-    // May be form instances should be created as well
-    return formsPackageDTO;
+    return formsPackageMapper.toDTO(dao.update(entity));
   }
 
   @Override

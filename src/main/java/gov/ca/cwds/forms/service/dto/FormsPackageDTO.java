@@ -6,6 +6,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import gov.ca.cwds.rest.api.Request;
 import gov.ca.cwds.rest.api.Response;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author CWDS TPT-2 Team
@@ -66,5 +67,25 @@ public class FormsPackageDTO extends BaseDTO implements Request, Response {
 
   public void setFormInstances(List<FormInstanceDTO> formInstances) {
     this.formInstances = formInstances;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof FormsPackageDTO)) {
+      return false;
+    }
+    FormsPackageDTO that = (FormsPackageDTO) o;
+    return Objects.equals(externalEntityId, that.externalEntityId) &&
+        Objects.equals(description, that.description) &&
+        Objects.equals(status, that.status);
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(super.hashCode(), externalEntityId, description, status);
   }
 }

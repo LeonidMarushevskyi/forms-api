@@ -44,7 +44,7 @@ public class FormsPackagesCollectionService extends CrudServiceAdapter {
       packages = dao.findAll();
     }
 
-    if (packages == null) {
+    if (packages == null || packages.isEmpty()) {
       return null;
     }
 

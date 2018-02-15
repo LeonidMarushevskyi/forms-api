@@ -15,14 +15,14 @@ public interface FormInstanceMapper {
 
   FormInstanceMapper INSTANCE = Mappers.getMapper(FormInstanceMapper.class);
 
-  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "id", source = "formId")
   @Mapping(target = "status", ignore = true)
   @Mapping(target = "name", source = "name")
   @Mapping(target = "schemaVersion", source = "schemaVersion")
   @Mapping(target = "parentFormId", source = "parentFormId")
   @Mapping(target = "parentFormName", source = "parentFormName")
   @Mapping(target = "content", source = "content")
-  @Mapping(target = "formsPackage", ignore = true)
+  @Mapping(target = "formsPackageId", source = "packageId")
   FormInstance toForm(FormInstanceDTO dto);
 
 
@@ -31,7 +31,7 @@ public interface FormInstanceMapper {
   @Mapping(target = "schemaVersion", source = "schemaVersion")
   @Mapping(target = "parentFormId", source = "parentFormId")
   @Mapping(target = "parentFormName", source = "parentFormName")
-  @Mapping(target = "packageId", source = "formsPackage.id")
+  @Mapping(target = "packageId", source = "formsPackageId")
   @Mapping(target = "content", source = "content")
   @Mapping(target = "messages", ignore = true)
   FormInstanceDTO toFormDTO(FormInstance formInstance);

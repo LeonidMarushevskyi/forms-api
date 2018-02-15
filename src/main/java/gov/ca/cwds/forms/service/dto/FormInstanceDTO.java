@@ -19,7 +19,7 @@ public class FormInstanceDTO extends BaseDTO implements Request, Response {
 
   private static final long serialVersionUID = -8643054699905680948L;
 
-  private String formId;
+  private Long formId;
 
   @NotNull
   private String name;
@@ -36,11 +36,11 @@ public class FormInstanceDTO extends BaseDTO implements Request, Response {
   @NotNull
   private JsonNode content;
 
-  public String getFormId() {
+  public Long getFormId() {
     return formId;
   }
 
-  public void setFormId(String formId) {
+  public void setFormId(Long formId) {
     this.formId = formId;
   }
 

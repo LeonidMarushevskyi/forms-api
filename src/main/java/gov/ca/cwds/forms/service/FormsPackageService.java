@@ -54,4 +54,19 @@ public class FormsPackageService extends
     return formsPackageMapper.toDTO(dao.delete(params.getId()));
   }
 
+  public FormsInstancesService getInstancesService() {
+    return instancesService;
+  }
+
+  public void setInstancesService(FormsInstancesService instancesService) {
+    this.instancesService = instancesService;
+  }
+
+  public FormsPackageMapper getFormsPackageMapper() {
+    return formsPackageMapper;
+  }
+
+  public void setFormsPackageMapper(FormsPackageMapper formsPackageMapper) {
+    this.formsPackageMapper = formsPackageMapper;
+  }
 }

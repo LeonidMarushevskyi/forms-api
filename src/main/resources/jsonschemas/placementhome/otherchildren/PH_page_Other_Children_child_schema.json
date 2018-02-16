@@ -1,0 +1,58 @@
+{
+  "title": "Placement Home Other Child",
+  "type": "object",
+  "properties": {
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "date_of_birth": {
+      "title": "Date of Birth",
+      "type": "string",
+      "format": "date",
+      "examples": ["2007-07-14"]
+    },
+    "gender": {
+      "title": "Gender",
+      "type": "string",
+      "enum": ["M", "F"],
+      "enumNames": ["Male", "Female"]
+    },
+    "annual_unearned_income": {
+      "title": "Annual Unearned Income",
+      "type": "number"
+    },
+    "spec_characteristics": {
+      "title": "Special Characteristics",
+      "type": "string"
+    },
+    "relationships": {
+      "title": "Relationships to Substitute Care Providers",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "scp_name": {
+            "type": "string"
+          },
+          "relationship": {
+            "$ref": "#/definitions/dictionary"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "dictionary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

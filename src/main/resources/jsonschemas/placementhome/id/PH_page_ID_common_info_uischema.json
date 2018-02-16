@@ -1,3 +1,49 @@
 {
-  
+  "ui:order": [
+    "name",
+    "primary_scp",
+    "fac_type",
+    "operated_by",
+    "sub_type",
+    "license_number",
+    "age_range",
+    "capacity",
+    "prim_contact",
+    "backup_contact",
+    "options"
+  ],
+  "age_range": {
+    "ui:order": [
+      "from",
+      "to"
+    ]
+  },
+  "capacity": {
+    "ui:order": [
+      "placements",
+      "beds_available",
+      "adj_capacity"
+    ]
+  },
+  "prim_contact": {
+    "ui:order": [
+      "phone",
+      "fax"
+    ]
+  },
+  "backup_contact": {
+    "ui:order": [
+      "name",
+      "phone"
+    ]
+  },
+  "options": {
+    "ui:order": [
+      "transitional",
+      "on_hold",
+      "inactivated",
+      "at_capacity",
+      "adoption_only"
+    ]
+  }
 }

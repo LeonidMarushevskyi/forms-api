@@ -1,0 +1,19 @@
+{
+  "ui:order": [
+    "name",
+    "date_of_birth",
+    "gender",
+    "annual_unearned_income",
+    "spec_characteristics",
+    "relationships"
+  ],
+  "gender": {
+    "ui:widget": "radio",
+    "ui:options": {
+      "inline": true
+    }
+  },
+  "spec_characteristics": {
+    "ui:widget": "textarea"
+  }
+}

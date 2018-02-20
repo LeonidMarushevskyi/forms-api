@@ -10,7 +10,21 @@
     },
     "reason_type": {
       "title": "Reason Type",
-      "$ref": "#/definitions/dictionary"
+      "$ref": "#/definitions/dictionary",
+      "enum": [
+        {
+          "value": "Reason #1",
+          "id": 1
+        },
+        {
+          "value": "Reason #2",
+          "id": 2
+        },
+        {
+          "value": "Reason #3",
+          "id": 3
+        }
+      ]
     },
     "comments": {
       "title": "Comments",

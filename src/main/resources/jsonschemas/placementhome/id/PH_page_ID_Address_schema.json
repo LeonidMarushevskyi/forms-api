@@ -1,6 +1,13 @@
 {
   "title": "Placement Home ID Address",
   "type": "object",
+  "required": [
+    "street_no",
+    "street_name",
+    "city",
+    "zip",
+    "county"
+  ],
   "properties": {
     "street_no": {
       "title": "Street No.",
@@ -40,11 +47,263 @@
     },
     "county": {
       "title": "County of Location",
-      "$ref": "#/definitions/dictionary"
+      "$ref": "#/definitions/dictionary",
+      "enum": [
+        {
+          "value": "Alameda",
+          "id": 1
+        },
+        {
+          "value": "Alpine",
+          "id": 2
+        },
+        {
+          "value": "Amador",
+          "id": 3
+        },
+        {
+          "value": "Butte",
+          "id": 4
+        },
+        {
+          "value": "Calaveras",
+          "id": 5
+        },
+        {
+          "value": "Colusa",
+          "id": 6
+        },
+        {
+          "value": "Contra Costa",
+          "id": 7
+        },
+        {
+          "value": "Del Norte",
+          "id": 8
+        },
+        {
+          "value": "El Dorado",
+          "id": 9
+        },
+        {
+          "value": "Fresno",
+          "id": 10
+        },
+        {
+          "value": "Glenn",
+          "id": 11
+        },
+        {
+          "value": "Humboldt",
+          "id": 12
+        },
+        {
+          "value": "Imperial",
+          "id": 13
+        },
+        {
+          "value": "Inyo",
+          "id": 14
+        },
+        {
+          "value": "Kern",
+          "id": 15
+        },
+        {
+          "value": "Kings",
+          "id": 16
+        },
+        {
+          "value": "Lake",
+          "id": 17
+        },
+        {
+          "value": "Lassen",
+          "id": 18
+        },
+        {
+          "value": "Los Angeles",
+          "id": 19
+        },
+        {
+          "value": "Madera",
+          "id": 20
+        },
+        {
+          "value": "Marin",
+          "id": 21
+        },
+        {
+          "value": "Mariposa",
+          "id": 22
+        },
+        {
+          "value": "Mendocino",
+          "id": 23
+        },
+        {
+          "value": "Merced",
+          "id": 24
+        },
+        {
+          "value": "Modoc",
+          "id": 25
+        },
+        {
+          "value": "Mono",
+          "id": 26
+        },
+        {
+          "value": "Monterey",
+          "id": 27
+        },
+        {
+          "value": "Napa",
+          "id": 28
+        },
+        {
+          "value": "Nevada",
+          "id": 29
+        },
+        {
+          "value": "Orange",
+          "id": 30
+        },
+        {
+          "value": "Placer",
+          "id": 31
+        },
+        {
+          "value": "Plumas",
+          "id": 32
+        },
+        {
+          "value": "Riverside",
+          "id": 33
+        },
+        {
+          "value": "Sacramento",
+          "id": 34
+        },
+        {
+          "value": "San Benito",
+          "id": 35
+        },
+        {
+          "value": "San Bernardino",
+          "id": 36
+        },
+        {
+          "value": "San Diego",
+          "id": 37
+        },
+        {
+          "value": "San Francisco",
+          "id": 38
+        },
+        {
+          "value": "San Joaquin",
+          "id": 39
+        },
+        {
+          "value": "San Luis Obispo",
+          "id": 40
+        },
+        {
+          "value": "San Mateo",
+          "id": 41
+        },
+        {
+          "value": "Santa Barbara",
+          "id": 42
+        },
+        {
+          "value": "Santa Clara",
+          "id": 43
+        },
+        {
+          "value": "Santa Cruz",
+          "id": 44
+        },
+        {
+          "value": "Shasta",
+          "id": 45
+        },
+        {
+          "value": "Sierra",
+          "id": 46
+        },
+        {
+          "value": "Siskiyou",
+          "id": 47
+        },
+        {
+          "value": "Solano",
+          "id": 48
+        },
+        {
+          "value": "Sonoma",
+          "id": 49
+        },
+        {
+          "value": "Stanislaus",
+          "id": 50
+        },
+        {
+          "value": "Sutter",
+          "id": 51
+        },
+        {
+          "value": "Tehama",
+          "id": 52
+        },
+        {
+          "value": "Trinity",
+          "id": 53
+        },
+        {
+          "value": "Tulare",
+          "id": 54
+        },
+        {
+          "value": "Tuolumne",
+          "id": 55
+        },
+        {
+          "value": "Ventura",
+          "id": 56
+        },
+        {
+          "value": "Yolo",
+          "id": 57
+        },
+        {
+          "value": "Yuba",
+          "id": 58
+        },
+        {
+          "value": "State of California",
+          "id": 59
+        }
+      ]
     },
     "foreign_country": {
       "title": "Foreign Country",
-      "$ref": "#/definitions/dictionary"
+      "$ref": "#/definitions/dictionary",
+      "enum": [
+        {
+          "value": "Canada",
+          "id": 1
+        },
+        {
+          "value": "Mexico",
+          "id": 2
+        },
+        {
+          "value": "Dominican Republic",
+          "id": 3
+        }
+      ]
     },
     "foreign_zip": {
       "title": "Foreign ZIP",
@@ -59,6 +318,7 @@
       "type": "string"
     }
   },
+  
 
   "definitions": {
     "dictionary": {

@@ -1,6 +1,7 @@
 {
   "title": "Placement Home ID information",
   "type": "object",
+  "required": ["fac_type"],
   "properties": {
     "name": {
       "title": "Name",
@@ -12,15 +13,68 @@
     },
     "fac_type": {
       "title": "Type",
-      "$ref": "#/definitions/dictionary"
-    },
-    "operated_by": {
-      "title": "Operated By",
-      "$ref": "#/definitions/dictionary"
+      "$ref": "#/definitions/dictionary",
+      "enum": [
+        {
+          "id": 1,
+          "value": "County Shelter"
+        },
+        {
+          "id": 2,
+          "value": "Court Specified Home"
+        },
+        {
+          "id": 3,
+          "value": "Foster Family Home"
+        },
+        {
+          "id": 4,
+          "value": "Guardian Home"
+        },{
+          "id": 5,
+          "value": "Relative/NREFM Home"
+        },
+        {
+          "id": 6,
+          "value": "Resource Family Home"
+        }
+      ]
     },
     "sub_type": {
       "title": "Foster/Resource Family Home Type",
-      "$ref": "#/definitions/dictionary"
+      "$ref": "#/definitions/dictionary",
+      "enum": [
+        {
+          "id": 1,
+          "value": "Type #1"
+        },
+        {
+          "id": 2,
+          "value": "Type #2"
+        },
+        {
+          "id": 3,
+          "value": "Type #3"
+        }
+      ]
+    },
+    "operated_by": {
+      "title": "Operated By",
+      "$ref": "#/definitions/dictionary",
+      "enum": [
+        {
+          "id": 1,
+          "value": "Option #1"
+        },
+        {
+          "id": 2,
+          "value": "Option #2"
+        },
+        {
+          "id": 3,
+          "value": "Option #3"
+        }
+      ]
     },
     "license_number": {
       "title": "License Number",

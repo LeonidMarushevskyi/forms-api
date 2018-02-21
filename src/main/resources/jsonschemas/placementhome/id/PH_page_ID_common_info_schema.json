@@ -44,18 +44,13 @@
       "title": "Foster/Resource Family Home Type",
       "$ref": "#/definitions/dictionary",
       "enum": [
-        {
-          "id": 1,
-          "value": "Type #1"
-        },
-        {
-          "id": 2,
-          "value": "Type #2"
-        },
-        {
-          "id": 3,
-          "value": "Type #3"
-        }
+        {"id": 1279, "value": "County Owned"},
+        {"id": 1280, "value": "Individual"},
+        {"id": 1281, "value": "Partnership"},
+        {"id": 1282, "value": "Private for Profit"},
+        {"id": 1283, "value": "Private Non Profit"},
+        {"id": 1284, "value": "Public Agency Not"},
+        {"id": 5979, "value": "Limited Liability Corporation"}
       ]
     },
     "operated_by": {

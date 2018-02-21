@@ -183,7 +183,7 @@
         },
         "ext": {
           "title": "Ext.",
-          "type": "integer"
+          "type": "string"
         }
       }
     }

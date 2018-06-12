@@ -1,0 +1,191 @@
+{
+  "title": "Placement Home ID information",
+  "type": "object",
+  "required": ["fac_type"],
+  "properties": {
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "primary_scp": {
+      "title": "Primary Substitute Care Provider",
+      "type": "string"
+    },
+    "fac_type": {
+      "title": "Type",
+      "$ref": "#/definitions/dictionary",
+      "enum": [
+        {
+          "id": 1,
+          "value": "County Shelter"
+        },
+        {
+          "id": 2,
+          "value": "Court Specified Home"
+        },
+        {
+          "id": 3,
+          "value": "Foster Family Home"
+        },
+        {
+          "id": 4,
+          "value": "Guardian Home"
+        },{
+          "id": 5,
+          "value": "Relative/NREFM Home"
+        },
+        {
+          "id": 6,
+          "value": "Resource Family Home"
+        }
+      ]
+    },
+    "sub_type": {
+      "title": "Foster/Resource Family Home Type",
+      "$ref": "#/definitions/dictionary",
+      "enum": [
+        {"id": 1279, "value": "County Owned"},
+        {"id": 1280, "value": "Individual"},
+        {"id": 1281, "value": "Partnership"},
+        {"id": 1282, "value": "Private for Profit"},
+        {"id": 1283, "value": "Private Non Profit"},
+        {"id": 1284, "value": "Public Agency Not"},
+        {"id": 5979, "value": "Limited Liability Corporation"}
+      ]
+    },
+    "operated_by": {
+      "title": "Operated By",
+      "$ref": "#/definitions/dictionary",
+      "enum": [
+        {
+          "id": 1,
+          "value": "Option #1"
+        },
+        {
+          "id": 2,
+          "value": "Option #2"
+        },
+        {
+          "id": 3,
+          "value": "Option #3"
+        }
+      ]
+    },
+    "license_number": {
+      "title": "License Number",
+      "type": "string"
+    },
+    "age_range": {
+      "title": "Age Range",
+      "type": "object",
+      "properties": {
+        "from": {
+          "title": "From",
+          "type": "integer"
+        },
+        "to": {
+          "title": "To",
+          "type": "integer"
+        }
+      }
+    },
+    "capacity": {
+      "type": "object",
+      "properties": {
+        "placements": {
+          "title": "#Placements",
+          "type": "integer"
+        },
+        "beds_available": {
+          "title": "Beds Available",
+          "type": "integer"
+        },
+        "adj_capacity": {
+          "title": "Adjusted Capacity",
+          "type": "integer"
+        }
+      }
+    },
+    "prim_contact": {
+      "type": "object",
+      "properties": {
+        "phone": {
+          "$ref": "#/definitions/phone_with_ext"
+        },
+        "fax": {
+          "title": "Fax",
+          "$ref": "#/definitions/phone"
+        }
+      }
+    },
+    "backup_contact": {
+      "title": "Backup Contact",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "phone": {
+          "$ref": "#/definitions/phone_with_ext"
+        }
+      }
+    },
+    "options": {
+      "type": "object",
+      "properties": {
+        "transitional": {
+          "title": "Transitional Housing Placement Program Facility",
+          "type": "boolean"
+        },
+        "on_hold": {
+          "title": "This home is on hold",
+          "description": "Please see the Hold Status page",
+          "type": "boolean"
+        },
+        "inactivated": {
+          "title": "Home Inactivated by Process Placement Home Move",
+          "type": "boolean"
+        },
+        "at_capacity": {
+          "title": "At Capacity",
+          "type": "boolean"
+        },
+        "adoption_only": {
+          "title": "Adoption Only",
+          "type": "boolean"
+        }
+      }
+    }
+  },
+
+  "definitions": {
+    "dictionary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "phone": {
+      "type": "string"
+    },
+    "phone_with_ext": {
+      "type": "object",
+      "properties": {
+        "phone": {
+          "title": "Phone",
+          "$ref": "#/definitions/phone"
+        },
+        "ext": {
+          "title": "Ext.",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -9,6 +9,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fge.jackson.JsonLoader;
 import gov.ca.cwds.forms.Constants.API;
 import gov.ca.cwds.forms.service.dto.FormInstanceDTO;
+import gov.ca.cwds.forms.service.dto.FormsPackageCollectionDTO;
+import gov.ca.cwds.forms.service.dto.FormsPackageDTO;
 import gov.ca.cwds.forms.web.rest.RestClientTestRule;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
@@ -37,13 +39,45 @@ public class FormsHelper {
     return createForm(name, schemaVersion, testFormContent);
   }
 
+  public FormInstanceDTO buildFormInstanceDTO(String formName, String schemaVersion)
+      throws Exception {
+    String testFormSchema = fixture("fixtures/testForm-schema.json");
+    schemaHelper.createFormsSchemaIfNotExist(formName, schemaVersion, testFormSchema);
+    String testFormContent = fixture("fixtures/testForm-good.json");
+    return buildForm(formName, schemaVersion, testFormContent);
+  }
+
+
+
+  public FormsPackageDTO buildFormsPackageDTO(String extId) {
+    FormsPackageDTO formsPackageDTO = new FormsPackageDTO();
+    formsPackageDTO.setDescription("Description");
+    formsPackageDTO.setStatus("DRAFT");
+    formsPackageDTO.setExternalEntityId(extId);
+
+    return formsPackageDTO;
+  }
+
+
   public FormInstanceDTO postForm(FormInstanceDTO form) {
     WebTarget target = clientTestRule.target(API.FORMS_INSTANCES_PATH);
     return target.request(MediaType.APPLICATION_JSON)
         .post(Entity.entity(form, MediaType.APPLICATION_JSON_TYPE), FormInstanceDTO.class);
   }
 
-  public FormInstanceDTO getForm(String name, String schemaVersion, String formContent)
+  public FormsPackageDTO postFormsPackage(FormsPackageDTO formsPackageDTO) {
+    WebTarget target = clientTestRule.target(API.FORMS_PACKAGES_PATH);
+    return target.request(MediaType.APPLICATION_JSON)
+        .post(Entity.entity(formsPackageDTO, MediaType.APPLICATION_JSON_TYPE), FormsPackageDTO.class);
+  }
+
+  public FormsPackageDTO putFormsPackage(FormsPackageDTO formsPackageDTO) {
+    WebTarget target = clientTestRule.target(API.FORMS_PACKAGES_PATH + "/" +formsPackageDTO.getId());
+    return target.request(MediaType.APPLICATION_JSON)
+        .put(Entity.entity(formsPackageDTO, MediaType.APPLICATION_JSON_TYPE), FormsPackageDTO.class);
+  }
+
+  private FormInstanceDTO buildForm(String name, String schemaVersion, String formContent)
       throws Exception {
     FormInstanceDTO form = new FormInstanceDTO();
     form.setName(name);
@@ -59,7 +93,7 @@ public class FormsHelper {
     String testFormSchema = fixture("fixtures/testForm-schema.json");
     schemaHelper.createFormsSchema(formName, schemaVersion, testFormSchema);
 
-    FormInstanceDTO formInstanceDTOBefore = getForm(formName, schemaVersion, formContent);
+    FormInstanceDTO formInstanceDTOBefore = buildForm(formName, schemaVersion, formContent);
     FormInstanceDTO formInstanceDTOAfter = postForm(formInstanceDTOBefore);
 
     assertNotNull(formInstanceDTOAfter);
@@ -78,5 +112,11 @@ public class FormsHelper {
 
   public void deleteSchema(String name, String version) throws Exception {
     schemaHelper.deleteFormsSchema(name, version);
+  }
+
+  public FormsPackageCollectionDTO getFormsPackages(String extId) {
+    WebTarget target = clientTestRule
+        .target(API.FORMS_PACKAGES_PATH + "?extId=" + extId);
+    return target.request(MediaType.APPLICATION_JSON).get(FormsPackageCollectionDTO.class);
   }
 }

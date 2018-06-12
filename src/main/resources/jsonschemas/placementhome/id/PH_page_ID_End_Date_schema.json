@@ -1,0 +1,46 @@
+{
+  "title": "Placement Home End Date",
+  "type": "object",
+  "properties": {
+    "end_date": {
+      "title": "End Date",
+      "type": "string",
+      "format": "date",
+      "examples": ["2007-07-14"]
+    },
+    "reason_type": {
+      "title": "Reason Type",
+      "$ref": "#/definitions/dictionary",
+      "enum": [
+        {"id": 6822, "value": "Address Change"},
+        {"id": 6823, "value": "Adoption Only"},
+        {"id": 6824, "value": "FFA Closure"},
+        {"id": 6825, "value": "No Longer Certified/Approved"},
+        {"id": 6826, "value": "Relative/NREFM No Eligible Child"},
+        {"id": 6827, "value": "SCP Changed FFA Agency"},
+        {"id": 6828, "value": "SCP Deceased"},
+        {"id": 6829, "value": "SCP Request"},
+        {"id": 6830, "value": "Other"},
+        {"id": 7028, "value": "County License Case Ended"}
+      ]
+    },
+    "comments": {
+      "title": "Comments",
+      "type": "string"
+    }
+  },
+
+  "definitions": {
+    "dictionary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -41,7 +41,7 @@ project.ext {
     dockerTag = projectVersion
 
     dropwizardVersion = '1.1.0'
-    coreApiVersion = '3.6.438'
+    coreApiVersion = '0.5.6_295-RC'
     mapstructVersion = '1.1.0.Final'
     mainClass = 'gov.ca.cwds.forms.FormsApiApplication'
 

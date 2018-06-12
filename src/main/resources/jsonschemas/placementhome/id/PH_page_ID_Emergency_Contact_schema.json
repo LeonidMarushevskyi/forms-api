@@ -1,0 +1,344 @@
+{
+  "title": "Placement Home ID Disaster Emergency Contact Information",
+  "type": "object",
+  "properties": {
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "phone": {
+      "title": "Phone",
+      "$ref": "#/definitions/phone_with_ext"
+    },
+    "alt_phone": {
+      "title": "Alternate Phone",
+      "$ref": "#/definitions/phone_with_ext"
+    },
+    "email": {
+      "title": "E-mail address",
+      "type": "string"
+    },
+    "street_no": {
+      "title": "Street No.",
+      "type": "string"
+    },
+    "street_name": {
+      "title": "Street Name.",
+      "type": "string"
+    },
+    "city": {
+      "title": "City",
+      "type": "string"
+    },
+    "state": {
+      "title": "State",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "enum": [
+        {
+          "value": "Alaska",
+          "id": "AK"
+        },
+        {
+          "value": "Alabama",
+          "id": "AL"
+        },
+        {
+          "value": "American Samoa",
+          "id": "AM"
+        },
+        {
+          "value": "Arkansas",
+          "id": "AR"
+        },
+        {
+          "value": "Arizona",
+          "id": "AZ"
+        },
+        {
+          "value": "California",
+          "id": "CA"
+        },
+        {
+          "value": "Northern Marianas Islands",
+          "id": "CM"
+        },
+        {
+          "value": "Colorado",
+          "id": "CO"
+        },
+        {
+          "value": "Connecticut",
+          "id": "CT"
+        },
+        {
+          "value": "Canal Zone",
+          "id": "CZ"
+        },
+        {
+          "value": "District of Columbia",
+          "id": "DC"
+        },
+        {
+          "value": "Delaware",
+          "id": "DE"
+        },
+        {
+          "value": "Florida",
+          "id": "FL"
+        },
+        {
+          "value": "Georgia",
+          "id": "GA"
+        },
+        {
+          "value": "Guam",
+          "id": "GU"
+        },
+        {
+          "value": "Hawaii",
+          "id": "HI"
+        },
+        {
+          "value": "Iowa",
+          "id": "IA"
+        },
+        {
+          "value": "Idaho",
+          "id": "ID"
+        },
+        {
+          "value": "Illinois",
+          "id": "IL"
+        },
+        {
+          "value": "Indiana",
+          "id": "IN"
+        },
+        {
+          "value": "Kansas",
+          "id": "KS"
+        },
+        {
+          "value": "Kentucky",
+          "id": "KY"
+        },
+        {
+          "value": "Louisiana",
+          "id": "LA"
+        },
+        {
+          "value": "Massachusetts",
+          "id": "MA"
+        },
+        {
+          "value": "Maryland",
+          "id": "MD"
+        },
+        {
+          "value": "Maine",
+          "id": "ME"
+        },
+        {
+          "value": "Michigan",
+          "id": "MI"
+        },
+        {
+          "value": "Minnesota",
+          "id": "MN"
+        },
+        {
+          "value": "Missouri",
+          "id": "MO"
+        },
+        {
+          "value": "Mississippi",
+          "id": "MS"
+        },
+        {
+          "value": "Montana",
+          "id": "MT"
+        },
+        {
+          "value": "North Carolina",
+          "id": "NC"
+        },
+        {
+          "value": "North Dakota",
+          "id": "ND"
+        },
+        {
+          "value": "Nebraska",
+          "id": "NE"
+        },
+        {
+          "value": "New Hampshire",
+          "id": "NH"
+        },
+        {
+          "value": "New Jersey",
+          "id": "NJ"
+        },
+        {
+          "value": "New Mexico",
+          "id": "NM"
+        },
+        {
+          "value": "Nevada",
+          "id": "NV"
+        },
+        {
+          "value": "New York",
+          "id": "NY"
+        },
+        {
+          "value": "Ohio",
+          "id": "OH"
+        },
+        {
+          "value": "Oklahoma",
+          "id": "OK"
+        },
+        {
+          "value": "Oregon",
+          "id": "OR"
+        },
+        {
+          "value": "Pennsylvania",
+          "id": "PA"
+        },
+        {
+          "value": "Puerto Rico",
+          "id": "PR"
+        },
+        {
+          "value": "Rhode Island",
+          "id": "RI"
+        },
+        {
+          "value": "South Carolina",
+          "id": "SC"
+        },
+        {
+          "value": "South Dakota",
+          "id": "SD"
+        },
+        {
+          "value": "Tennessee",
+          "id": "TN"
+        },
+        {
+          "value": "Trust Territories",
+          "id": "TT"
+        },
+        {
+          "value": "Texas",
+          "id": "TX"
+        },
+        {
+          "value": "Utah",
+          "id": "UT"
+        },
+        {
+          "value": "Virginia",
+          "id": "VA"
+        },
+        {
+          "value": "Virgin Islands",
+          "id": "VI"
+        },
+        {
+          "value": "Vermont",
+          "id": "VT"
+        },
+        {
+          "value": "Washington",
+          "id": "WA"
+        },
+        {
+          "value": "Wisconsin",
+          "id": "WI"
+        },
+        {
+          "value": "West Virginia",
+          "id": "WV"
+        },
+        {
+          "value": "Wyoming",
+          "id": "WY"
+        }
+      ]
+    },
+    "zip": {
+      "title": "ZIP",
+      "type": "string"
+    },
+    "zip_ext": {
+      "title": "ZIP Ext.",
+      "type": "string"
+    },
+    "foreign_country": {
+      "title": "Foreign Country",
+      "$ref": "#/definitions/dictionary",
+      "enum": [
+        {
+          "value": "Canada",
+          "id": 1
+        },
+        {
+          "value": "Mexico",
+          "id": 2
+        },
+        {
+          "value": "Dominican Republic",
+          "id": 3
+        }
+      ]
+    },
+    "foreign_zip": {
+      "title": "Foreign ZIP",
+      "type": "string"
+    },
+    "foreign_addr_desc": {
+      "title": "Foreign Address Description (Province name, etc)",
+      "type": "string"
+    }
+  },
+
+  "definitions": {
+    "dictionary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "phone": {
+      "type": "string"
+    },
+    "phone_with_ext": {
+      "type": "object",
+      "properties": {
+        "phone": {
+          "title": "Phone",
+          "$ref": "#/definitions/phone"
+        },
+        "ext": {
+          "title": "Ext.",
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

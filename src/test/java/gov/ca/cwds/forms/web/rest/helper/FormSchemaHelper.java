@@ -39,7 +39,7 @@ public class FormSchemaHelper {
         .post(Entity.entity(schema, MediaType.APPLICATION_JSON_TYPE), FormSchemaDTO.class);
   }
 
-  public FormSchemaDTO getSchema(String name, String schemaVersion, String jsonSchema)
+  public FormSchemaDTO buildSchema(String name, String schemaVersion, String jsonSchema)
       throws Exception {
     FormSchemaDTO schema = new FormSchemaDTO();
     schema.setFormName(name);
@@ -53,7 +53,32 @@ public class FormSchemaHelper {
   public FormSchemaDTO createFormsSchema(String formName, String schemaVersion, String jsonSchema)
       throws Exception {
     deleteFormsSchema(formName, schemaVersion);
-    FormSchemaDTO schemaDTOBefore = getSchema(formName, schemaVersion, jsonSchema);
+    return storeFormSchemaDTO(formName,schemaVersion, jsonSchema);
+  }
+
+  public FormSchemaDTO createFormsSchemaIfNotExist(String formName, String schemaVersion, String jsonSchema)
+      throws Exception {
+
+    FormSchemaDTO formSchema = getFormSchema(formName, schemaVersion);
+    if(formSchema != null)  return formSchema;
+
+    return storeFormSchemaDTO(formName, schemaVersion, jsonSchema);
+  }
+
+  public FormSchemaDTO getFormSchema(String formName, String schemaVersion){
+    WebTarget target = clientTestRule
+        .target(API.FORMS_SCHEMAS_PATH + "/" + formName + "/" + schemaVersion);
+    Response response = target.request(MediaType.APPLICATION_JSON).get();
+    FormSchemaDTO dto = null;
+    if(response.getStatus() != 404) {
+      dto = response.readEntity(FormSchemaDTO.class);
+    }
+    return dto;
+  }
+
+  private FormSchemaDTO storeFormSchemaDTO(String formName, String schemaVersion, String jsonSchema)
+      throws Exception {
+    FormSchemaDTO schemaDTOBefore = buildSchema(formName, schemaVersion, jsonSchema);
     FormSchemaDTO schemaDTOAfter = postSchema(schemaDTOBefore);
     assertNotNull(schemaDTOAfter);
     assertEquals(formName, schemaDTOAfter.getFormName());
@@ -71,7 +96,7 @@ public class FormSchemaHelper {
     WebTarget target = clientTestRule
         .target(API.FORMS_SCHEMAS_PATH + "/" + name + "/" + schemaVersion);
     Response response = target.request(MediaType.APPLICATION_JSON).get();
-    if (404 == response.getStatus()) {
+    if (getFormSchema(name, schemaVersion) == null) {
       return;
     }
     FormSchemaDTO schema = response.readEntity(FormSchemaDTO.class);

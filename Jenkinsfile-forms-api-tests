@@ -40,7 +40,7 @@ node ('preint') {
    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')),
               [$class: 'RebuildSettings', autoRebuild: false, rebuildDisabled: false],
 			  parameters([
-			  string(defaultValue: 'development', description: '', name: 'branch'),
+			  string(defaultValue: 'master', description: '', name: 'branch'),
 			  string(defaultValue: 'https://forms-api.preint.cwds.io/', description: '', name: 'APP_URL')]),pipelineTriggers([])])
 
    def errorcode = null;

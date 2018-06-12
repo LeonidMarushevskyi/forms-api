@@ -53,5 +53,6 @@
 
   <include file="forms_schema.xml" relativeToChangelogFile="true"/>
   <include file="forms_structure.xml" relativeToChangelogFile="true"/>
+  <include file="forms_data.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

@@ -1,0 +1,17 @@
+{
+  "ui:order": [
+    "name",
+    "phone",
+    "alt_phone",
+    "email",
+    "street_no",
+    "street_name",
+    "city",
+    "state",
+    "zip",
+    "zip_ext",
+    "foreign_country",
+    "foreign_zip",
+    "foreign_addr_desc"
+  ]
+}

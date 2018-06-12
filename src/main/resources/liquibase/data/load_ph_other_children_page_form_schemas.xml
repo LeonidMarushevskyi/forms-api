@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+  <changeSet author="TPT2_team" id="ph_other_children_page-1">
+    <insert tableName="form_schema">
+      <column name="form_name" value="PH_page_Other_Children"/>
+      <column name="schema_version" value="1"/>
+      <column name="description" value="Child Info on Other Children page of Placement Home notebook"/>
+      <column name="json_schema" value="{&quot;title&quot;:&quot;Placement Home Other Children&quot;,&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;children&quot;:{&quot;type&quot;:&quot;array&quot;,&quot;items&quot;:{&quot;$ref&quot;:&quot;#/definitions/other_child&quot;}}},&quot;definitions&quot;:{&quot;dictionary&quot;:{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;id&quot;:{&quot;type&quot;:&quot;integer&quot;},&quot;value&quot;:{&quot;type&quot;:&quot;string&quot;}}},&quot;other_child&quot;:{&quot;title&quot;:&quot;Other Child&quot;,&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;name&quot;:{&quot;title&quot;:&quot;Name&quot;,&quot;type&quot;:&quot;string&quot;},&quot;date_of_birth&quot;:{&quot;title&quot;:&quot;Date of Birth&quot;,&quot;type&quot;:&quot;string&quot;,&quot;format&quot;:&quot;date&quot;,&quot;examples&quot;:[&quot;2007-07-14&quot;]},&quot;gender&quot;:{&quot;title&quot;:&quot;Gender&quot;,&quot;$ref&quot;:&quot;#/definitions/dictionary&quot;,&quot;enum&quot;:[{&quot;id&quot;:1,&quot;value&quot;:&quot;Male&quot;},{&quot;id&quot;:2,&quot;value&quot;:&quot;Female&quot;}]},&quot;annual_unearned_income&quot;:{&quot;title&quot;:&quot;Annual Unearned Income&quot;,&quot;type&quot;:&quot;number&quot;},&quot;spec_characteristics&quot;:{&quot;title&quot;:&quot;Special Characteristics&quot;,&quot;type&quot;:&quot;string&quot;},&quot;relationships&quot;:{&quot;title&quot;:&quot;Relationships to Substitute Care Providers&quot;,&quot;type&quot;:&quot;array&quot;,&quot;items&quot;:{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;scp_name&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;relationship&quot;:{&quot;$ref&quot;:&quot;#/definitions/dictionary&quot;}}}}}}}}"/>
+      <column name="ui_schema" value="{&quot;children&quot;:{&quot;items&quot;:{&quot;ui:order&quot;:[&quot;name&quot;,&quot;date_of_birth&quot;,&quot;gender&quot;,&quot;annual_unearned_income&quot;,&quot;spec_characteristics&quot;,&quot;relationships&quot;],&quot;gender&quot;:{&quot;ui:widget&quot;:&quot;radio&quot;,&quot;ui:options&quot;:{&quot;inline&quot;:true}},&quot;spec_characteristics&quot;:{&quot;ui:widget&quot;:&quot;textarea&quot;}}}}"/>
+    </insert>
+  </changeSet>
+</databaseChangeLog>

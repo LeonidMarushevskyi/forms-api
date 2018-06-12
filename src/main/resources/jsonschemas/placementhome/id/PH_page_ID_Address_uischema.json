@@ -1,0 +1,17 @@
+{
+  "ui:order": [
+    "street_no",
+    "street_name",
+    "city",
+    "state",
+    "zip",
+    "zip_ext",
+    "geo_region",
+    "county",
+    "foreign_country",
+    "foreign_zip",
+    "foreign_addr_desc",
+    "comment"
+  ]
+
+}

@@ -60,7 +60,10 @@ public class FormInstance implements PersistentObject {
 
   @Column(name = "status")
   @Enumerated
-  private FormInstanceStatus status;
+  private FormInstanceStatus status = FormInstanceStatus.DRAFT;
+
+  @Column(name = "package_id")
+  private Long formsPackageId;
 
   @Type(type = "FormInstanceType")
   @Column(name = "content")
@@ -121,6 +124,14 @@ public class FormInstance implements PersistentObject {
 
   public void setContent(JsonNode content) {
     this.content = content;
+  }
+
+  public Long getFormsPackageId() {
+    return formsPackageId;
+  }
+
+  public void setFormsPackageId(Long formsPackageId) {
+    this.formsPackageId = formsPackageId;
   }
 
   @Override

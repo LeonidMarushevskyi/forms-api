@@ -5,14 +5,19 @@ import com.google.inject.Injector;
 import com.google.inject.Provides;
 import gov.ca.cwds.forms.service.FormsInstancesCollectionService;
 import gov.ca.cwds.forms.service.FormsInstancesService;
+import gov.ca.cwds.forms.service.FormsPackageService;
+import gov.ca.cwds.forms.service.FormsPackagesCollectionService;
 import gov.ca.cwds.forms.service.FormsSchemasCollectionService;
 import gov.ca.cwds.forms.service.FormsSchemasService;
 import gov.ca.cwds.forms.service.dto.FormInstanceDTO;
 import gov.ca.cwds.forms.service.dto.FormSchemaDTO;
+import gov.ca.cwds.forms.service.dto.FormsPackageDTO;
 import gov.ca.cwds.forms.web.rest.FormsInstancesResource;
+import gov.ca.cwds.forms.web.rest.FormsPackagesResource;
 import gov.ca.cwds.forms.web.rest.FormsSchemasResource;
 import gov.ca.cwds.forms.web.rest.parameters.FormParameterObject;
 import gov.ca.cwds.forms.web.rest.parameters.FormSchemaParameterObject;
+import gov.ca.cwds.forms.web.rest.parameters.FormsPackageParameterObject;
 import gov.ca.cwds.forms.web.rest.system.SystemInformationResource;
 import gov.ca.cwds.rest.resources.ResourceDelegate;
 import gov.ca.cwds.rest.resources.ServiceBackedResourceDelegate;
@@ -40,6 +45,7 @@ public class ResourcesModule extends AbstractModule {
 
     bind(FormsSchemasResource.class);
     bind(FormsInstancesResource.class);
+    bind(FormsPackagesResource.class);
   }
 
   @Provides
@@ -72,6 +78,22 @@ public class ResourcesModule extends AbstractModule {
       Injector injector) {
     return new ServiceBackedResourceDelegate(
         injector.getInstance(FormsInstancesCollectionService.class));
+  }
+
+  @Provides
+  @FormsPackageServiceBackedResource
+  public TypedResourceDelegate<FormsPackageParameterObject, FormsPackageDTO> formsPackageServiceBackedResource(
+      Injector injector) {
+    return new TypedServiceBackedResourceDelegate<>(
+        injector.getInstance(FormsPackageService.class));
+  }
+
+  @Provides
+  @FormsPackageCollectionServiceBackedResource
+  public ResourceDelegate formsPackageCollectionServiceBackedResource(
+      Injector injector) {
+    return new ServiceBackedResourceDelegate(
+        injector.getInstance(FormsPackagesCollectionService.class));
   }
 
 }

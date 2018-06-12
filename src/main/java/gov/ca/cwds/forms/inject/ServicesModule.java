@@ -3,6 +3,8 @@ package gov.ca.cwds.forms.inject;
 import com.google.inject.AbstractModule;
 import gov.ca.cwds.forms.service.FormsInstancesCollectionService;
 import gov.ca.cwds.forms.service.FormsInstancesService;
+import gov.ca.cwds.forms.service.FormsPackageService;
+import gov.ca.cwds.forms.service.FormsPackagesCollectionService;
 import gov.ca.cwds.forms.service.FormsSchemasCollectionService;
 import gov.ca.cwds.forms.service.FormsSchemasService;
 
@@ -27,6 +29,8 @@ public class ServicesModule extends AbstractModule {
     bind(FormsSchemasCollectionService.class);
     bind(FormsInstancesService.class);
     bind(FormsInstancesCollectionService.class);
+    bind(FormsPackageService.class);
+    bind(FormsPackagesCollectionService.class);
   }
 
 }

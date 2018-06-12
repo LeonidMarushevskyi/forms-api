@@ -1,0 +1,7 @@
+{
+  "ui:order": [
+    "end_date",
+    "reason_type",
+    "comments"
+  ]
+}

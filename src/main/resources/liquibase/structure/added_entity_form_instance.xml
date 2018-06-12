@@ -32,4 +32,10 @@
       </column>
     </createTable>
   </changeSet>
+
+  <changeSet author="TPT2_team" id="form_instance_add_package_column-1">
+    <addColumn tableName="form_instance">
+      <column name="package_id" type="${type.long}"/>
+    </addColumn>
+  </changeSet>
 </databaseChangeLog>

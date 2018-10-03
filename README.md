@@ -54,3 +54,7 @@ To run Integration tests set property api.url to point to environment host. Use 
 
 ### Smoke Testing
 Smoke test suite is part of integration tests. Set api.url, use gradle smokeTestSuite task. Smoke test endpoint is not protected by Perry.
+
+# Questions
+
+If you have any questions regarding the contents of this repository, please email the Office of Systems Integration at FOSS@osi.ca.gov.

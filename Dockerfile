@@ -1,4 +1,4 @@
-FROM cwds/javajdk
+FROM cwds/alpinejre
 RUN mkdir /opt/forms-api
 RUN mkdir /opt/forms-api/logs
 ADD config/*.yml /opt/forms-api/
